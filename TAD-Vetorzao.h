@@ -19,6 +19,9 @@ int buscaSequencial(long int chave);
 
 /*Busca Binária no Vetor Ordenado*/
 long int buscaBinaria(long int chave);
- 
+
 /*Mostra o tempo de execução do programa */
-void tempoDeExecucao(struct timespec inicio, struct timespec fim);
+double tempoDeExecucao(struct timespec inicio, struct timespec fim);
+
+/*Calcula o desvio padrão*/
+double desvioPadrao(double tempos[], double media);

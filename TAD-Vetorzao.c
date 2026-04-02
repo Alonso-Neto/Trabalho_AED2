@@ -2,6 +2,7 @@
 #include <time.h>
 #include <stdlib.h>
 #include <locale.h>
+#include <math.h>
 
 
 
@@ -36,13 +37,14 @@ unsigned long int sortearElementoNoVetor(){
 }
 
 unsigned long int sortearElemento(){
-    srand(time(NULL));
-    unsigned long int aleatorio = rand() % N ;
+    unsigned long int aleatorio;
+    aleatorio = rand() % N ;
     printf("Chave de busca: [%lu]\n",aleatorio);
     return aleatorio;
+    
 }
 
-int buscaSequencial(long int chave){
+int buscaSequencial(unsigned long int chave){
     int i = 0;
     while(i < N){
         if(vetor[i] == chave){
@@ -55,10 +57,10 @@ int buscaSequencial(long int chave){
 
 }
 
-long int buscaBinaria(long int chave){
+long int buscaBinaria(unsigned long int chave){
     int inicio, fim, meio;
     inicio = 0; fim = N-1;
-    
+
     while(inicio <= fim){
         meio = (inicio+fim)/2;
         if(chave > vetor[meio]){inicio = meio + 1;}
@@ -68,20 +70,35 @@ long int buscaBinaria(long int chave){
             return meio;
         }
     }
-    printf("\nNão achado!");
+    printf("\nNão achado!\n");
 }
 
 
-void tempoDeExecucao(struct timespec inicio, struct timespec fim){
+double tempoDeExecucao(struct timespec inicio, struct timespec fim){
     long long tempoNano;
     double tempoMili, tempoSeg;
     tempoNano = (fim.tv_sec - inicio.tv_sec) * 1000000000LL + (fim.tv_nsec - inicio.tv_nsec);
     tempoMili = tempoNano / 1000000.0;
     tempoSeg = tempoNano / 1000000000.0;
-    printf("\n========================\n");
+    /*printf("\n========================\n");
     printf("Tempo de execução:\n");
     printf("  %lld nanosegundos\n", tempoNano);
     printf("  %.3lf milissegundos\n", tempoMili);
     printf("  %.6lf segundos\n", tempoSeg);
-    printf("========================\n");
+    printf("========================\n");*/
+    return tempoMili;
+
+}
+
+double desvioPadrao(double tempos[], double media){
+    double somatorio = 0, variancia = 0, desvioPadrao = 0;
+    for(int i = 0; i < 30;i++){
+        somatorio += tempos[i] - media;
+    }
+    printf("Somatório = %.6lf milissegundos\n",somatorio);
+    variancia  = (pow(somatorio,2) / 29);
+    printf("Variancia = %.6lf\n",variancia);
+    desvioPadrao = sqrt(variancia);
+    printf("Desvio Padrão = %.6lf milissegundos\n",desvioPadrao);
+    return desvioPadrao;
 }
