@@ -4,11 +4,20 @@
 #include <locale.h>
 #include <math.h>
 
+/*Definindo o tipoNo*/
+typedef struct tipoNo {
+    unsigned long int dado;
+    struct tipoNo *prox;
+}tipoNo;
 
+/*Definindo o tipoLista*/
+typedef struct tipoLista{
+    tipoNo *prim;
+    int tamanho;
+}tipoLista;
 
 const int N = 1000000;
 unsigned long int vetor[1000000];
-
 
 void criaVetorDesordenado() {
     srand(time(NULL));
@@ -101,4 +110,69 @@ double desvioPadrao(double tempos[], double media){
     desvioPadrao = sqrt(variancia);
     printf("Desvio Padrão = %.6lf milissegundos\n",desvioPadrao);
     return desvioPadrao;
+}
+
+void copiaVetorParaArquivo(unsigned long int vetor[]){
+    FILE *fd;
+    fd = fopen("CopiaVetor","wb+");
+
+    if(fd == NULL) {
+        printf("Não consegui abrir o arquivo!!! :( \n");
+        exit(1);
+    }
+
+    if( fwrite(vetor,sizeof(unsigned long int),1000000,fd) == 1000000) {
+        printf("Dados do vetor gravados com sucesso!\n");
+    }
+    fclose(fd);
+
+}
+
+void copiaArquivoParaVetor(unsigned long int vetorDestino[]){
+    FILE *fd;
+    fd = fopen("CopiaVetor","r");
+
+    if(fd == NULL){
+        printf("Não consegui abrir o arquivo!!! :( \n");
+        exit(1);
+    }
+    if(fread(vetorDestino,sizeof(unsigned long int),1000000,fd) == 1000000){
+        printf("Dados recuperados com sucesso! \n");
+    }
+    fclose(fd);
+
+}
+
+
+tipoLista* iniciaLista(){
+   tipoLista *pLista = (tipoLista*)malloc(sizeof(tipoLista));
+   if(pLista != NULL){
+    pLista->prim = NULL;
+    pLista->tamanho = 0;
+   }
+   return pLista;
+}
+
+void inserirNaLista(tipoLista *pLista, unsigned long int valor){
+    tipoNo *aux;
+    aux = (tipoNo*) malloc(sizeof(tipoNo));
+    aux->dado = valor;
+    aux->prox = pLista->prim;
+    pLista->prim = aux;
+    pLista->tamanho++;
+}
+
+void copiaArquivorParaLista(tipoLista *pLista){
+    FILE *fd;
+    unsigned long int temp;
+    fd = fopen("CopiaVetor","rb");
+
+    if(fd == NULL){
+        printf("Não consegui abrir o arquivo!!! :( \n");
+        exit(1);
+    }
+    while(fread(&temp,sizeof(unsigned long int),1,fd) == 1){
+        inserirNaLista(pLista,temp);
+    }
+    fclose(fd);
 }

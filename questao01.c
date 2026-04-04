@@ -17,6 +17,8 @@ int main() {
     
     printf("VETOR DESORDENADO !!\n");
     criaVetorDesordenado();
+
+    copiaVetorParaArquivo(vetor);
     
     printf("BUSCA POR ELEMENTO NO VETOR!!\n");
     for(i=0; i<15; i++){
@@ -81,6 +83,7 @@ int main() {
 
 
     desvioPadrao(tempos,media);
+    
 
 
     printf("Final do programa !!\n");
