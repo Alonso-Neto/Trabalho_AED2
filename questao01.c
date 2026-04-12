@@ -9,10 +9,13 @@
 
 int main() {
 
+    srand(time(NULL));
     struct timespec inicio, fim;
     int res,i;
-    double somaTempos = 0, media = 0;
-    double tempos[30];
+    double somaTemposSeq = 0, somaTemposBin = 0;
+    double mediaSeq = 0, mediaBin = 0;
+    double temposSeq[30];
+    double temposBin[30];
     setlocale(LC_ALL,"pt_BR.UTF8");
     
     printf("VETOR DESORDENADO !!\n");
@@ -20,72 +23,63 @@ int main() {
 
     copiaVetorParaArquivo(vetor);
     
-    printf("BUSCA POR ELEMENTO NO VETOR!!\n");
+    printf("BUSCA SEQUENCIAL - ELEMENTO NO VETOR!!\n");
     for(i=0; i<15; i++){
             clock_gettime(CLOCK_REALTIME, &inicio);
             buscaSequencial(sortearElementoNoVetor());
             clock_gettime(CLOCK_REALTIME, &fim);
-            tempoDeExecucao(inicio,fim);
-            somaTempos += tempoDeExecucao(inicio, fim);
-            tempos[i] = tempoDeExecucao(inicio,fim);
+            temposSeq[i] = tempoDeExecucao(inicio,fim);
+            somaTemposSeq += temposSeq[i];
     }
-    printf("********************************************Média das 15 execuções: %.6lf\n",somaTempos/15);
 
-    printf("BUSCA POR ELEMENTO ALEATÓRIO\n");
+    printf("BUSCA SEQUENCIAL - ELEMENTO ALEATÓRIO\n");
     for(i=0; i<15; i++){
         clock_gettime(CLOCK_REALTIME, &inicio);
         buscaSequencial(sortearElemento());
         clock_gettime(CLOCK_REALTIME, &fim);
-        tempoDeExecucao(inicio,fim);
-        somaTempos += tempoDeExecucao(inicio, fim);
-        tempos[15+i] = tempoDeExecucao(inicio,fim);
+        temposSeq[15+i] = tempoDeExecucao(inicio,fim);
+        somaTemposSeq += temposSeq[15+i];
     }
-    printf("*******************************************Média das 15 execuções: %.6lf\n",somaTempos/15);
-    
-    media = somaTempos/30;
-    printf("=====================\n");
-    printf("Média das 30 execuções: %.6lf\n",media);
-    printf("=====================\n");
 
-
-
-    //Segunda parte nesta bosta
-    somaTempos = 0;
-    media = 0;
-
-    printf("VETOR ORDENADO !!!!\n");
+    printf("\nVETOR ORDENADO !!!!\n");
     criaVetorOrdenado();
-    printf("BUSCA POR ELEMENTO NO VETOR\n");
+    printf("BUSCA BINÁRIA - ELEMENTO NO VETOR\n");
     for(i=0; i<15; i++){
             clock_gettime(CLOCK_REALTIME, &inicio);
             buscaBinaria(sortearElementoNoVetor());
             clock_gettime(CLOCK_REALTIME, &fim);
-            tempoDeExecucao(inicio,fim);
-            somaTempos += tempoDeExecucao(inicio, fim);
+            temposBin[i] = tempoDeExecucao(inicio,fim);
+            somaTemposBin += temposBin[i];
     }
-    printf("********************************************Média das 15 execuções: %.6lf\n",somaTempos/15);
 
-    printf("BUSCA POR ELEMENTO ALEATÓRIO\n");
+    printf("\nBUSCA BINÁRIA - ELEMENTO ALEATÓRIO\n");
     for(i=0; i<15; i++){
         clock_gettime(CLOCK_REALTIME, &inicio);
         buscaBinaria(sortearElemento());
         clock_gettime(CLOCK_REALTIME, &fim);
-        tempoDeExecucao(inicio,fim);
-        somaTempos += tempoDeExecucao(inicio, fim);
+        temposBin[i+15] = tempoDeExecucao(inicio,fim);
+        somaTemposBin += temposBin[i+15];
     }
-    printf("*******************************************Média das 15 execuções: %.6lf\n",somaTempos/15);
 
-    media = somaTempos/30;
+    printf("\n\n");
     printf("=====================\n");
-    printf("Média das 30 execuções: %.6lf milissegundos\n",media);
+    printf("RESUMO FINAL - BUSCA SEQUENCIAL\n");
     printf("=====================\n");
+    mediaSeq = somaTemposSeq / 30;
+    printf("Média das 30 execuções: %.6lf milissegundos\n", mediaSeq);
+    printf("=====================\n");
+    desvioPadrao(temposSeq, mediaSeq);
     
+    printf("\n");
+    printf("=====================\n");
+    printf("RESUMO FINAL - BUSCA BINÁRIA\n");
+    printf("=====================\n");
+    mediaBin = somaTemposBin / 30;
+    printf("Média das 30 execuções: %.6lf milissegundos\n", mediaBin);
+    printf("=====================\n");
+    desvioPadrao(temposBin, mediaBin);
 
-
-    desvioPadrao(tempos,media);
-    
-
-
+    printf("\n");
     printf("Final do programa !!\n");
     return 0;
 }

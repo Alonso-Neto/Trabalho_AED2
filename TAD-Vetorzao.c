@@ -29,7 +29,6 @@ void criaVetorDesordenado() {
 }
 
 void criaVetorOrdenado(){
-    srand(time(NULL));
     int incremento;
 
     vetor[0] = rand() % 1000;
@@ -47,8 +46,9 @@ unsigned long int sortearElementoNoVetor(){
 
 unsigned long int sortearElemento(){
     unsigned long int aleatorio;
-    aleatorio = rand() % N ;
-    printf("Chave de busca: [%lu]\n",aleatorio);
+    
+    aleatorio = rand() + rand();
+    printf("\nChave de busca: [%lu]\n",aleatorio);
     return aleatorio;
     
 }
@@ -57,11 +57,11 @@ int buscaSequencial(unsigned long int chave){
     int i = 0;
     while(i < N){
         if(vetor[i] == chave){
-            printf("\nElemento encontrado na posição: %d do vetor\n", i);         
+            printf("Elemento encontrado na posição: %d do vetor\n", i);         
             return i;}
         else{i++;}
     }
-    printf("\nElemento não encontrado\n");
+    printf("Elemento não encontrado\n");
     return 0;
 
 }
@@ -102,10 +102,10 @@ double tempoDeExecucao(struct timespec inicio, struct timespec fim){
 double desvioPadrao(double tempos[], double media){
     double somatorio = 0, variancia = 0, desvioPadrao = 0;
     for(int i = 0; i < 30;i++){
-        somatorio += tempos[i] - media;
+        somatorio += pow(tempos[i] - media, 2);
     }
     printf("Somatório = %.6lf milissegundos\n",somatorio);
-    variancia  = (pow(somatorio,2) / 29);
+    variancia  = (somatorio / 29);
     printf("Variancia = %.6lf\n",variancia);
     desvioPadrao = sqrt(variancia);
     printf("Desvio Padrão = %.6lf milissegundos\n",desvioPadrao);
@@ -175,4 +175,21 @@ void copiaArquivorParaLista(tipoLista *pLista){
         inserirNaLista(pLista,temp);
     }
     fclose(fd);
+}
+
+int buscaNaLista(unsigned long int chave,tipoLista *pLista){
+    int i = 0;
+    tipoNo *aux;
+    aux = pLista->prim;
+    while(aux != NULL){
+        if(aux->dado == chave){
+            printf("\nElemento encontrado na posição: %d da lista\n", i);         
+            return i;
+        }else{
+            aux = aux->prox;
+            i++;}
+    }
+    printf("\nElemento não encontrado na lista\n");
+    return 0;
+
 }

@@ -51,3 +51,6 @@ void inserir(tipoLista *pLista, unsigned long int valor);
 
 /*Copia o vetor do arquivo para a lista encadeada*/
 void copiaArquivorParaLista(tipoLista *pLista);
+
+/*Função de busca de um elemento na lista encadeada*/
+int buscaNaLista(unsigned long int chave,tipoLista *pLista);
