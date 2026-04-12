@@ -54,3 +54,9 @@ void copiaArquivorParaLista(tipoLista *pLista);
 
 /*Função de busca de um elemento na lista encadeada*/
 int buscaNaLista(unsigned long int chave,tipoLista *pLista);
+
+/*Cria um vetor de inteiros desordenado*/
+void criaVetordeIntDesordenado(int v[],int tam);
+
+/*Método de ordenação bubble sort*/
+void bubbleSort(int vet[], int tam);

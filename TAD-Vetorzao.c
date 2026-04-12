@@ -193,3 +193,26 @@ int buscaNaLista(unsigned long int chave,tipoLista *pLista){
     return 0;
 
 }
+
+
+void criaVetordeIntDesordenado(int v[],int tam) {
+    for (int i = 0; i < tam; i++) {
+        v[i] = (rand() % tam+rand());
+    }
+}
+
+void bubbleSort(int vet[], int tam){
+    int i, j,aux;
+    for (i = 0; i < tam - 1; i++) {
+        for (j = 0; j < tam - i - 1; j++) {
+            if (vet[j] > vet[j + 1]) {
+                aux = vet[j];
+                vet[j]= vet[j + 1];
+                vet[j + 1] = aux;
+            }
+        }
+    }
+}
+
+
+
