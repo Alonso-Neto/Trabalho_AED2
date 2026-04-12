@@ -4,11 +4,20 @@
 #include <locale.h>
 #include <math.h>
 
+/*Definindo o tipoNo*/
+typedef struct tipoNo {
+    unsigned long int dado;
+    struct tipoNo *prox;
+}tipoNo;
 
+/*Definindo o tipoLista*/
+typedef struct tipoLista{
+    tipoNo *prim;
+    int tamanho;
+}tipoLista;
 
 const int N = 1000000;
 unsigned long int vetor[1000000];
-
 
 void criaVetorDesordenado() {
     srand(time(NULL));
@@ -20,7 +29,6 @@ void criaVetorDesordenado() {
 }
 
 void criaVetorOrdenado(){
-    srand(time(NULL));
     int incremento;
 
     vetor[0] = rand() % 1000;
@@ -38,8 +46,9 @@ unsigned long int sortearElementoNoVetor(){
 
 unsigned long int sortearElemento(){
     unsigned long int aleatorio;
-    aleatorio = rand() % N ;
-    printf("Chave de busca: [%lu]\n",aleatorio);
+    
+    aleatorio = rand() + rand();
+    printf("\nChave de busca: [%lu]\n",aleatorio);
     return aleatorio;
     
 }
@@ -48,11 +57,11 @@ int buscaSequencial(unsigned long int chave){
     int i = 0;
     while(i < N){
         if(vetor[i] == chave){
-            printf("\nElemento encontrado na posição: %d do vetor\n", i);         
+            printf("Elemento encontrado na posição: %d do vetor\n", i);         
             return i;}
         else{i++;}
     }
-    printf("\nElemento não encontrado\n");
+    printf("Elemento não encontrado\n");
     return 0;
 
 }
@@ -93,12 +102,94 @@ double tempoDeExecucao(struct timespec inicio, struct timespec fim){
 double desvioPadrao(double tempos[], double media){
     double somatorio = 0, variancia = 0, desvioPadrao = 0;
     for(int i = 0; i < 30;i++){
-        somatorio += tempos[i] - media;
+        somatorio += pow(tempos[i] - media, 2);
     }
     printf("Somatório = %.6lf milissegundos\n",somatorio);
-    variancia  = (pow(somatorio,2) / 29);
+    variancia  = (somatorio / 29);
     printf("Variancia = %.6lf\n",variancia);
     desvioPadrao = sqrt(variancia);
     printf("Desvio Padrão = %.6lf milissegundos\n",desvioPadrao);
     return desvioPadrao;
+}
+
+void copiaVetorParaArquivo(unsigned long int vetor[]){
+    FILE *fd;
+    fd = fopen("CopiaVetor","wb+");
+
+    if(fd == NULL) {
+        printf("Não consegui abrir o arquivo!!! :( \n");
+        exit(1);
+    }
+
+    if( fwrite(vetor,sizeof(unsigned long int),1000000,fd) == 1000000) {
+        printf("Dados do vetor gravados com sucesso!\n");
+    }
+    fclose(fd);
+
+}
+
+void copiaArquivoParaVetor(unsigned long int vetorDestino[]){
+    FILE *fd;
+    fd = fopen("CopiaVetor","r");
+
+    if(fd == NULL){
+        printf("Não consegui abrir o arquivo!!! :( \n");
+        exit(1);
+    }
+    if(fread(vetorDestino,sizeof(unsigned long int),1000000,fd) == 1000000){
+        printf("Dados recuperados com sucesso! \n");
+    }
+    fclose(fd);
+
+}
+
+
+tipoLista* iniciaLista(){
+   tipoLista *pLista = (tipoLista*)malloc(sizeof(tipoLista));
+   if(pLista != NULL){
+    pLista->prim = NULL;
+    pLista->tamanho = 0;
+   }
+   return pLista;
+}
+
+void inserirNaLista(tipoLista *pLista, unsigned long int valor){
+    tipoNo *aux;
+    aux = (tipoNo*) malloc(sizeof(tipoNo));
+    aux->dado = valor;
+    aux->prox = pLista->prim;
+    pLista->prim = aux;
+    pLista->tamanho++;
+}
+
+void copiaArquivorParaLista(tipoLista *pLista){
+    FILE *fd;
+    unsigned long int temp;
+    fd = fopen("CopiaVetor","rb");
+
+    if(fd == NULL){
+        printf("Não consegui abrir o arquivo!!! :( \n");
+        exit(1);
+    }
+    while(fread(&temp,sizeof(unsigned long int),1,fd) == 1){
+        inserirNaLista(pLista,temp);
+    }
+    fclose(fd);
+}
+
+int buscaNaLista(unsigned long int chave,tipoLista *pLista){
+    int i = 0;
+    tipoNo *aux;
+    aux = pLista->prim;
+    while(aux != NULL){
+        if(aux->dado == chave){
+            printf("\nElemento encontrado na posição: %d da lista\n", i);         
+            return i;
+        }else{
+            aux = aux->prox;
+            i++;}
+    }
+    printf("\nElemento não encontrado na lista\n");
+    return 0;
+
 }
