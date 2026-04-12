@@ -60,3 +60,16 @@ void criaVetordeIntDesordenado(int v[],int tam);
 
 /*Método de ordenação bubble sort*/
 void bubbleSort(int vet[], int tam);
+
+/*Método de ordenação inserção direta*/
+void insercaoDireta(int vet[], int tam);
+
+/*Método de ordenação seleção Direta*/
+void selecaoDireta(int vet[], int num);
+
+/*Método de ordenação quicksort*/
+
+void quicksort(int vet[], int inicio, int fim);
+
+/*Método de ordenação bogo sort*/
+void bogoSort(int vet[], int tam);

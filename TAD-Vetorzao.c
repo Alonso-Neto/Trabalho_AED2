@@ -214,5 +214,93 @@ void bubbleSort(int vet[], int tam){
     }
 }
 
+void insercaoDireta(int vet[], int tam) {
+    int i, chave, j;
+    for (i = 1; i < tam; i++) {
+        chave = vet[i];
+        j = i - 1;
+
+        while (j >= 0 && vet[j] > chave) {
+            vet[j + 1] = vet[j];
+            j = j - 1;
+        }
+        vet[j + 1] = chave;
+    }
+}
+
+/*parte do quicksort*/
+void selecaoDireta(int vet[], int num) {
+    int i, j, min, temp;
+    for (i = 0; i < num - 1; i++) {
+        min = i;
+        for (j = i + 1; j < num; j++) {
+            if (vet[j] < vet[min]) {
+                min = j;
+            }
+        }
+        temp = vet[min];
+        vet[min] = vet[i];
+        vet[i] = temp;
+    }
+}
+
+/*parte do quicksort*/
+
+void trocar(int* a, int* b) {
+    int t = *a;
+    *a = *b;
+    *b = t;
+}
+
+/*parte do quicksort*/
+
+int particiona(int vet[], int inicio, int fim) {
+    int pivo = vet[fim];
+    int i = (inicio - 1);
+
+    for (int j = inicio; j <= fim - 1; j++) {
+        if (vet[j] <= pivo) {
+            i++;
+            trocar(&vet[i], &vet[j]);
+        }
+    }
+    trocar(&vet[i + 1], &vet[fim]);
+    return (i + 1);
+}
+
+void quicksort(int vet[], int inicio, int fim) {
+    if (inicio < fim) {
+        int pi = particiona(vet, inicio, fim);
+
+        quicksort(vet, inicio, pi - 1);
+        quicksort(vet, pi + 1, fim);
+    }
+}
+
+/*parte do bogosort*/
+int esta_ordenado(int vet[], int tam) {
+    for (int i = 0; i < tam - 1; i++) {
+        if (vet[i] > vet[i + 1]) {
+            return 0;
+        }
+    }
+    return 1;
+}
+
+/*parte do bogosort*/
+void embaralhar(int vet[], int tam) {
+    for (int i = 0; i < tam; i++) {
+        int temp = vet[i];
+        int j = rand() % tam;
+        vet[i] = vet[j];
+        vet[j] = temp;
+    }
+}
+
+void bogoSort(int vet[], int tam) {
+    while (!esta_ordenado(vet, tam)) {
+        embaralhar(vet, tam);
+    }
+}
 
 
