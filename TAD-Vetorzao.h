@@ -73,3 +73,9 @@ void quicksort(int vet[], int inicio, int fim);
 
 /*Método de ordenação bogo sort*/
 void bogoSort(int vet[], int tam);
+
+/*volta o vet pro original*/
+void copiaVetor(int vetbase[], int vet[], int tamanho);
+
+/*Método de ordenação mergesort*/
+void merge_sort(int vet[], int tam);
