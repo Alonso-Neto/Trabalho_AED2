@@ -1,0 +1,46 @@
+{
+  "questao": "questao03",
+  "algoritmos": [
+    {
+      "nome": "Bubble Sort",
+      "algoritmo": "BUBBLE SORT",
+      "media": 30772.456160,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 10,
+      "tempos_execucao": [31558.090200, 30309.753000, 31252.007000, 30468.086000, 31126.782200, 31041.377800, 30334.918900, 30606.440900, 30521.633100, 30505.472500]
+    },
+    {
+      "nome": "Insertion Sort",
+      "algoritmo": "INSERTION SORT",
+      "media": 6583.119540,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 10,
+      "tempos_execucao": [6481.302900, 6521.418100, 6642.387800, 6547.064600, 6753.125900, 6574.735300, 6560.478200, 6550.781300, 6562.067500, 6637.833800]
+    },
+    {
+      "nome": "Selection Sort",
+      "algoritmo": "SELECTION SORT",
+      "media": 9420.462950,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 10,
+      "tempos_execucao": [9239.643600, 9267.040100, 9358.157600, 9369.161700, 10172.692700, 9320.246400, 9372.814100, 9344.328800, 9387.988500, 9372.556000]
+    },
+    {
+      "nome": "Quick Sort",
+      "algoritmo": "QUICK SORT",
+      "media": 18.798190,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 10,
+      "tempos_execucao": [21.772000, 20.898300, 17.011900, 16.252900, 24.197200, 16.261500, 19.053500, 17.131400, 17.488200, 17.915000]
+    },
+    {
+      "nome": "Merge Sort",
+      "algoritmo": "MERGE SORT",
+      "media": 26.968700,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 10,
+      "tempos_execucao": [29.229200, 25.249600, 24.736800, 22.250800, 42.983800, 23.616500, 24.871200, 25.621000, 25.624600, 25.503500]
+    }
+  ],
+  "timestamp": "2026-04-19"
+}

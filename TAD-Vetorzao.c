@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <locale.h>
 #include <math.h>
+#include "TAD-Vetorzao.h"
 
 /*Definindo o tipoNo*/
 typedef struct tipoNo {
@@ -214,5 +215,199 @@ void bubbleSort(int vet[], int tam){
     }
 }
 
+void insercaoDireta(int vet[], int tam) {
+    int i, chave, j;
+    for (i = 1; i < tam; i++) {
+        chave = vet[i];
+        j = i - 1;
+
+        while (j >= 0 && vet[j] > chave) {
+            vet[j + 1] = vet[j];
+            j = j - 1;
+        }
+        vet[j + 1] = chave;
+    }
+}
+
+/*parte do quicksort*/
+void selecaoDireta(int vet[], int num) {
+    int i, j, min, temp;
+    for (i = 0; i < num - 1; i++) {
+        min = i;
+        for (j = i + 1; j < num; j++) {
+            if (vet[j] < vet[min]) {
+                min = j;
+            }
+        }
+        temp = vet[min];
+        vet[min] = vet[i];
+        vet[i] = temp;
+    }
+}
+
+/*parte do quicksort*/
+
+void trocar(int* a, int* b) {
+    int t = *a;
+    *a = *b;
+    *b = t;
+}
+
+/*parte do quicksort*/
+
+int particiona(int vet[], int inicio, int fim) {
+    int pivo = vet[fim];
+    int i = (inicio - 1);
+
+    for (int j = inicio; j <= fim - 1; j++) {
+        if (vet[j] <= pivo) {
+            i++;
+            trocar(&vet[i], &vet[j]);
+        }
+    }
+    trocar(&vet[i + 1], &vet[fim]);
+    return (i + 1);
+}
+
+void quicksort(int vet[], int inicio, int fim) {
+    if (inicio < fim) {
+        int pi = particiona(vet, inicio, fim);
+
+        quicksort(vet, inicio, pi - 1);
+        quicksort(vet, pi + 1, fim);
+    }
+}
+
+/*parte do bogosort*/
+int esta_ordenado(int vet[], int tam) {
+    for (int i = 0; i < tam - 1; i++) {
+        if (vet[i] > vet[i + 1]) {
+            return 0;
+        }
+    }
+    return 1;
+}
+
+/*parte do bogosort*/
+void embaralhar(int vet[], int tam) {
+    for (int i = 0; i < tam; i++) {
+        int temp = vet[i];
+        int j = rand() % tam;
+        vet[i] = vet[j];
+        vet[j] = temp;
+    }
+}
+
+void bogoSort(int vet[], int tam) {
+    while (!esta_ordenado(vet, tam)) {
+        embaralhar(vet, tam);
+    }
+}
+
+void copiaVetor(int vetbase[], int vet[], int tam){
+    for (int i = 0; i < tam; i++) {
+        vet[i] = vetbase[i];
+    }
+}
+
+void merge(int vet[], int esq, int meio, int dir) {
+    int i, j, k;
+    int n1 = meio - esq + 1;
+    int n2 = dir - meio;
+
+    int L[n1], R[n2];
+
+    for (i = 0; i < n1; i++) {
+        L[i] = vet[esq + i];
+    }
+    for (j = 0; j < n2; j++) {
+        R[j] = vet[meio + 1 + j];
+    }
+
+    i = 0;
+    j = 0;
+    k = esq;
+
+    while (i < n1 && j < n2) {
+        if (L[i] <= R[j]) {
+            vet[k] = L[i];
+            i++;
+        } else {
+            vet[k] = R[j];
+            j++;
+        }
+        k++;
+    }
+
+    while (i < n1) {
+        vet[k] = L[i];
+        i++;
+        k++;
+    }
+
+    while (j < n2) {
+        vet[k] = R[j];
+        j++;
+        k++;
+    }
+}
+
+void merge_sort_recursivo(int vet[], int esq, int dir) {
+    if (esq < dir) {
+        int meio = esq + (dir - esq) / 2;
+
+        merge_sort_recursivo(vet, esq, meio);
+        merge_sort_recursivo(vet, meio + 1, dir);
+
+        merge(vet, esq, meio, dir);
+    }
+}
+
+void merge_sort(int vet[], int tam) {
+    if (tam > 1) {
+        merge_sort_recursivo(vet, 0, tam - 1);
+    }
+}
+
+/*Função genérica para salvar dados de algoritmos em JSON*/
+void salvarDadosJSON(const char *nomeArquivo, const char *questao, 
+                     DadosAlgoritmo *algoritmos, int num_algoritmos) {
+    FILE *arquivo = fopen(nomeArquivo, "w");
+    if(arquivo != NULL) {
+        setlocale(LC_NUMERIC, "C"); // Usar ponto decimal
+        
+        fprintf(arquivo, "{\n");
+        fprintf(arquivo, "  \"questao\": \"%s\",\n", questao);
+        fprintf(arquivo, "  \"algoritmos\": [\n");
+        
+        for(int i = 0; i < num_algoritmos; i++) {
+            fprintf(arquivo, "    {\n");
+            fprintf(arquivo, "      \"nome\": \"%s\",\n", algoritmos[i].nome);
+            fprintf(arquivo, "      \"algoritmo\": \"%s\",\n", algoritmos[i].algoritmo);
+            fprintf(arquivo, "      \"media\": %.6lf,\n", algoritmos[i].media);
+            fprintf(arquivo, "      \"desvio_padrao\": %.6lf,\n", algoritmos[i].desvio_padrao);
+            fprintf(arquivo, "      \"numero_execucoes\": %d,\n", algoritmos[i].numero_execucoes);
+            fprintf(arquivo, "      \"tempos_execucao\": [");
+            
+            for(int j = 0; j < algoritmos[i].numero_execucoes; j++) {
+                fprintf(arquivo, "%.6lf", algoritmos[i].tempos[j]);
+                if(j < algoritmos[i].numero_execucoes - 1) fprintf(arquivo, ", ");
+            }
+            fprintf(arquivo, "]\n");
+            fprintf(arquivo, "    }");
+            
+            if(i < num_algoritmos - 1) fprintf(arquivo, ",");
+            fprintf(arquivo, "\n");
+        }
+        
+        fprintf(arquivo, "  ],\n");
+        fprintf(arquivo, "  \"timestamp\": \"2026-04-19\"\n");
+        fprintf(arquivo, "}\n");
+        fclose(arquivo);
+        
+        setlocale(LC_NUMERIC, "pt_BR.UTF8"); // Restaurar locale
+        printf("Dados salvos em %s\n", nomeArquivo);
+    }
+}
 
 

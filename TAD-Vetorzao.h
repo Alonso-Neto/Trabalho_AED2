@@ -60,3 +60,36 @@ void criaVetordeIntDesordenado(int v[],int tam);
 
 /*Método de ordenação bubble sort*/
 void bubbleSort(int vet[], int tam);
+
+/*Método de ordenação inserção direta*/
+void insercaoDireta(int vet[], int tam);
+
+/*Método de ordenação seleção Direta*/
+void selecaoDireta(int vet[], int num);
+
+/*Método de ordenação quicksort*/
+
+void quicksort(int vet[], int inicio, int fim);
+
+/*Método de ordenação bogo sort*/
+void bogoSort(int vet[], int tam);
+
+/*volta o vet pro original*/
+void copiaVetor(int vetbase[], int vet[], int tamanho);
+
+/*Método de ordenação mergesort*/
+void merge_sort(int vet[], int tam);
+
+/*Estrutura para armazenar dados de um algoritmo*/
+typedef struct {
+    char *nome;                 /*Nome exibível do algoritmo*/
+    char *algoritmo;            /*Tipo/categoria do algoritmo*/
+    double media;               /*Média dos tempos*/
+    double desvio_padrao;       /*Desvio padrão*/
+    int numero_execucoes;       /*Quantidade de execuções*/
+    double *tempos;             /*Array de tempos individuais*/
+} DadosAlgoritmo;
+
+/*Salva dados dos algoritmos em arquivo JSON*/
+void salvarDadosJSON(const char *nomeArquivo, const char *questao, 
+                     DadosAlgoritmo *algoritmos, int num_algoritmos);

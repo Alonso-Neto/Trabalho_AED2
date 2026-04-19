@@ -82,6 +82,35 @@ int main(){
     printf("Média das 30 execuções (LISTA): %.6lf milissegundos\n", mediaLista);
     printf("=====================\n");
     desvioPadrao(temposLista, mediaLista);
+    
+    for(i=0;i<30;i++){
+        printf("%.6lf ",temposVetor[i]);
+    }
+
+    // Preparar dados para salvar em JSON
+    double desvioVet = desvioPadrao(temposVetor, mediaVetor);
+    double desvioLst = desvioPadrao(temposLista, mediaLista);
+    
+    DadosAlgoritmo algoritmos[2];
+    
+    // Busca em Vetor
+    algoritmos[0].nome = "Busca em Vetor";
+    algoritmos[0].algoritmo = "Vetor";
+    algoritmos[0].media = mediaVetor;
+    algoritmos[0].desvio_padrao = desvioVet;
+    algoritmos[0].numero_execucoes = 30;
+    algoritmos[0].tempos = temposVetor;
+    
+    // Busca em Lista
+    algoritmos[1].nome = "Busca em Lista";
+    algoritmos[1].algoritmo = "Lista Encadeada";
+    algoritmos[1].media = mediaLista;
+    algoritmos[1].desvio_padrao = desvioLst;
+    algoritmos[1].numero_execucoes = 30;
+    algoritmos[1].tempos = temposLista;
+    
+    // Salvar em JSON usando função genérica
+    salvarDadosJSON("questao02_dados.json", "questao02", algoritmos, 2);
 
     return 0;
-}
+} 
