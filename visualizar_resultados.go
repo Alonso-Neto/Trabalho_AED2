@@ -8,9 +8,58 @@ import (
 	"sort"
 
 	"github.com/pterm/pterm"
+
+	"gonum.org/v1/plot"
+	"gonum.org/v1/plot/plotter"
+	"gonum.org/v1/plot/vg"
 )
 
+func gerarGrafico(nome string, pontos []Ponto) {
+	var pts plotter.XYs
+
+	for _, p := range pontos {
+		pts = append(pts, plotter.XY{
+			X: p.Tamanho,
+			Y: p.Tempo,
+		})
+	}
+
+	p := plot.New()
+	p.Title.Text = nome
+	p.X.Label.Text = "Tamanho do vetor"
+	p.Y.Label.Text = "Tempo (ms)"
+
+	linha, _ := plotter.NewLine(pts)
+	p.Add(linha)
+
+	p.Save(8*vg.Inch, 4*vg.Inch, nome+".png")
+}
+
+func lerGraficoJSON(caminhoArquivo string) ([]AlgoritmoGrafico, error) {
+	conteudo, err := os.ReadFile(caminhoArquivo)
+	if err != nil {
+		return nil, err
+	}
+
+	var dados struct {
+		Algoritmos []AlgoritmoGrafico `json:"algoritmos"`
+	}
+
+	err = json.Unmarshal(conteudo, &dados)
+	if err != nil {
+		return nil, err
+	}
+
+	return dados.Algoritmos, nil
+}
+
 // Algoritmo armazena dados de um algoritmo
+type Ponto struct {
+	Tamanho float64 `json:"tamanho"`
+	Tempo   float64 `json:"tempo"`
+}
+
+// estrutura antiga (mantém)
 type Algoritmo struct {
 	Nome            string    `json:"nome"`
 	Algoritmo       string    `json:"algoritmo"`
@@ -18,6 +67,12 @@ type Algoritmo struct {
 	DesvioPadrao    float64   `json:"desvio_padrao"`
 	NumeroExecucoes int       `json:"numero_execucoes"`
 	TemposExecucao  []float64 `json:"tempos_execucao"`
+}
+
+// estrutura nova (gráfico)
+type AlgoritmoGrafico struct {
+	Nome   string  `json:"nome"`
+	Pontos []Ponto `json:"pontos"`
 }
 
 // DadosQuestao armazena os dados de uma questão
@@ -79,6 +134,24 @@ func main() {
 	}
 
 	pterm.Success.Println("✅ Visualização concluída com sucesso!")
+
+	pterm.Println()
+	pterm.DefaultSection.Println("📈 Gerando gráficos...")
+
+	for _, q := range questoes {
+
+		algoritmosGrafico, err := lerGraficoJSON(q.arquivo)
+		if err != nil {
+			continue
+		}
+
+		for _, alg := range algoritmosGrafico {
+			pterm.Info.Printf("Gerando gráfico: %s\n", alg.Nome)
+			gerarGrafico(alg.Nome, alg.Pontos)
+		}
+	}
+
+	pterm.Success.Println("📊 Gráficos gerados!")
 }
 
 // lerArquivoJSON lê e desserializa um arquivo JSON

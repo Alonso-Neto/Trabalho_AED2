@@ -6,76 +6,99 @@
 #include "TAD-Vetorzao.h"
 
 /*Definindo o tipoNo*/
-typedef struct tipoNo {
+typedef struct tipoNo
+{
     unsigned long int dado;
     struct tipoNo *prox;
-}tipoNo;
+} tipoNo;
 
 /*Definindo o tipoLista*/
-typedef struct tipoLista{
+typedef struct tipoLista
+{
     tipoNo *prim;
     int tamanho;
-}tipoLista;
+} tipoLista;
 
 const int N = 1000000;
 unsigned long int vetor[1000000];
 
-void criaVetorDesordenado() {
+void criaVetorDesordenado()
+{
     srand(time(NULL));
 
-    for (int i = 0; i < N; i++) {
+    for (int i = 0; i < N; i++)
+    {
         vetor[i] = (rand() % N);
     }
-    printf("Último elemento = %lu\n",vetor[999999]);
+    printf("Último elemento = %lu\n", vetor[999999]);
 }
 
-void criaVetorOrdenado(){
+void criaVetorOrdenado()
+{
     int incremento;
 
     vetor[0] = rand() % 1000;
 
-    for(int i = 1; i < N; i++){
+    for (int i = 1; i < N; i++)
+    {
         incremento = rand() % 100;
-        vetor[i] = vetor[i-1] + incremento;
+        vetor[i] = vetor[i - 1] + incremento;
     }
 }
 
-unsigned long int sortearElementoNoVetor(){
+unsigned long int sortearElementoNoVetor()
+{
     int indiceAleatorio = rand() % N;
     return vetor[indiceAleatorio];
 }
 
-unsigned long int sortearElemento(){
+unsigned long int sortearElemento()
+{
     unsigned long int aleatorio;
-    
+
     aleatorio = rand() + rand();
-    printf("\nChave de busca: [%lu]\n",aleatorio);
+    printf("\nChave de busca: [%lu]\n", aleatorio);
     return aleatorio;
-    
 }
 
-int buscaSequencial(unsigned long int chave){
+int buscaSequencial(unsigned long int chave)
+{
     int i = 0;
-    while(i < N){
-        if(vetor[i] == chave){
-            printf("Elemento encontrado na posição: %d do vetor\n", i);         
-            return i;}
-        else{i++;}
+    while (i < N)
+    {
+        if (vetor[i] == chave)
+        {
+            printf("Elemento encontrado na posição: %d do vetor\n", i);
+            return i;
+        }
+        else
+        {
+            i++;
+        }
     }
     printf("Elemento não encontrado\n");
     return 0;
-
 }
 
-long int buscaBinaria(unsigned long int chave){
+long int buscaBinaria(unsigned long int chave)
+{
     int inicio, fim, meio;
-    inicio = 0; fim = N-1;
+    inicio = 0;
+    fim = N - 1;
 
-    while(inicio <= fim){
-        meio = (inicio+fim)/2;
-        if(chave > vetor[meio]){inicio = meio + 1;}
-        else if(chave < vetor[meio]){fim = meio -1;}
-        else{
+    while (inicio <= fim)
+    {
+        meio = (inicio + fim) / 2;
+        if (chave > vetor[meio])
+        {
+            inicio = meio + 1;
+        }
+        else if (chave < vetor[meio])
+        {
+            fim = meio - 1;
+        }
+        else
+        {
             printf("\nAchado na posição %d", meio);
             return meio;
         }
@@ -83,8 +106,8 @@ long int buscaBinaria(unsigned long int chave){
     printf("\nNão achado!\n");
 }
 
-
-double tempoDeExecucao(struct timespec inicio, struct timespec fim){
+double tempoDeExecucao(struct timespec inicio, struct timespec fim)
+{
     long long tempoNano;
     double tempoMili, tempoSeg;
     tempoNano = (fim.tv_sec - inicio.tv_sec) * 1000000000LL + (fim.tv_nsec - inicio.tv_nsec);
@@ -97,131 +120,154 @@ double tempoDeExecucao(struct timespec inicio, struct timespec fim){
     printf("  %.6lf segundos\n", tempoSeg);
     printf("========================\n");*/
     return tempoMili;
-
 }
 
-double desvioPadrao(double tempos[], double media){
+double desvioPadrao(double tempos[], double media)
+{
     double somatorio = 0, variancia = 0, desvioPadrao = 0;
-    for(int i = 0; i < 30;i++){
+    for (int i = 0; i < 30; i++)
+    {
         somatorio += pow(tempos[i] - media, 2);
     }
-    printf("Somatório = %.6lf milissegundos\n",somatorio);
-    variancia  = (somatorio / 29);
-    printf("Variancia = %.6lf\n",variancia);
+    printf("Somatório = %.6lf milissegundos\n", somatorio);
+    variancia = (somatorio / 29);
+    printf("Variancia = %.6lf\n", variancia);
     desvioPadrao = sqrt(variancia);
-    printf("Desvio Padrão = %.6lf milissegundos\n",desvioPadrao);
+    printf("Desvio Padrão = %.6lf milissegundos\n", desvioPadrao);
     return desvioPadrao;
 }
 
-void copiaVetorParaArquivo(unsigned long int vetor[]){
+void copiaVetorParaArquivo(unsigned long int vetor[])
+{
     FILE *fd;
-    fd = fopen("CopiaVetor","wb+");
+    fd = fopen("CopiaVetor", "wb+");
 
-    if(fd == NULL) {
+    if (fd == NULL)
+    {
         printf("Não consegui abrir o arquivo!!! :( \n");
         exit(1);
     }
 
-    if( fwrite(vetor,sizeof(unsigned long int),1000000,fd) == 1000000) {
+    if (fwrite(vetor, sizeof(unsigned long int), 1000000, fd) == 1000000)
+    {
         printf("Dados do vetor gravados com sucesso!\n");
     }
     fclose(fd);
-
 }
 
-void copiaArquivoParaVetor(unsigned long int vetorDestino[]){
+void copiaArquivoParaVetor(unsigned long int vetorDestino[])
+{
     FILE *fd;
-    fd = fopen("CopiaVetor","r");
+    fd = fopen("CopiaVetor", "r");
 
-    if(fd == NULL){
+    if (fd == NULL)
+    {
         printf("Não consegui abrir o arquivo!!! :( \n");
         exit(1);
     }
-    if(fread(vetorDestino,sizeof(unsigned long int),1000000,fd) == 1000000){
+    if (fread(vetorDestino, sizeof(unsigned long int), 1000000, fd) == 1000000)
+    {
         printf("Dados recuperados com sucesso! \n");
     }
     fclose(fd);
-
 }
 
-
-tipoLista* iniciaLista(){
-   tipoLista *pLista = (tipoLista*)malloc(sizeof(tipoLista));
-   if(pLista != NULL){
-    pLista->prim = NULL;
-    pLista->tamanho = 0;
-   }
-   return pLista;
+tipoLista *iniciaLista()
+{
+    tipoLista *pLista = (tipoLista *)malloc(sizeof(tipoLista));
+    if (pLista != NULL)
+    {
+        pLista->prim = NULL;
+        pLista->tamanho = 0;
+    }
+    return pLista;
 }
 
-void inserirNaLista(tipoLista *pLista, unsigned long int valor){
+void inserirNaLista(tipoLista *pLista, unsigned long int valor)
+{
     tipoNo *aux;
-    aux = (tipoNo*) malloc(sizeof(tipoNo));
+    aux = (tipoNo *)malloc(sizeof(tipoNo));
     aux->dado = valor;
     aux->prox = pLista->prim;
     pLista->prim = aux;
     pLista->tamanho++;
 }
 
-void copiaArquivorParaLista(tipoLista *pLista){
+void copiaArquivorParaLista(tipoLista *pLista)
+{
     FILE *fd;
     unsigned long int temp;
-    fd = fopen("CopiaVetor","rb");
+    fd = fopen("CopiaVetor", "rb");
 
-    if(fd == NULL){
+    if (fd == NULL)
+    {
         printf("Não consegui abrir o arquivo!!! :( \n");
         exit(1);
     }
-    while(fread(&temp,sizeof(unsigned long int),1,fd) == 1){
-        inserirNaLista(pLista,temp);
+    while (fread(&temp, sizeof(unsigned long int), 1, fd) == 1)
+    {
+        inserirNaLista(pLista, temp);
     }
     fclose(fd);
 }
 
-int buscaNaLista(unsigned long int chave,tipoLista *pLista){
+int buscaNaLista(unsigned long int chave, tipoLista *pLista)
+{
     int i = 0;
     tipoNo *aux;
     aux = pLista->prim;
-    while(aux != NULL){
-        if(aux->dado == chave){
-            printf("\nElemento encontrado na posição: %d da lista\n", i);         
+    while (aux != NULL)
+    {
+        if (aux->dado == chave)
+        {
+            printf("\nElemento encontrado na posição: %d da lista\n", i);
             return i;
-        }else{
+        }
+        else
+        {
             aux = aux->prox;
-            i++;}
+            i++;
+        }
     }
     printf("\nElemento não encontrado na lista\n");
     return 0;
-
 }
 
-
-void criaVetordeIntDesordenado(int v[],int tam) {
-    for (int i = 0; i < tam; i++) {
-        v[i] = (rand() % tam+rand());
+void criaVetordeIntDesordenado(int v[], int tam)
+{
+    for (int i = 0; i < tam; i++)
+    {
+        v[i] = (rand() % tam + rand());
     }
 }
 
-void bubbleSort(int vet[], int tam){
-    int i, j,aux;
-    for (i = 0; i < tam - 1; i++) {
-        for (j = 0; j < tam - i - 1; j++) {
-            if (vet[j] > vet[j + 1]) {
+void bubbleSort(int vet[], int tam)
+{
+    int i, j, aux;
+    for (i = 0; i < tam - 1; i++)
+    {
+        for (j = 0; j < tam - i - 1; j++)
+        {
+            if (vet[j] > vet[j + 1])
+            {
                 aux = vet[j];
-                vet[j]= vet[j + 1];
+                vet[j] = vet[j + 1];
                 vet[j + 1] = aux;
             }
         }
     }
 }
 
-void insercaoDireta(int vet[], int tam) {
+void insercaoDireta(int vet[], int tam)
+{
     int i, chave, j;
-    for (i = 1; i < tam; i++) {
+    for (i = 1; i < tam; i++)
+    {
         chave = vet[i];
         j = i - 1;
 
-        while (j >= 0 && vet[j] > chave) {
+        while (j >= 0 && vet[j] > chave)
+        {
             vet[j + 1] = vet[j];
             j = j - 1;
         }
@@ -230,12 +276,16 @@ void insercaoDireta(int vet[], int tam) {
 }
 
 /*parte do quicksort*/
-void selecaoDireta(int vet[], int num) {
+void selecaoDireta(int vet[], int num)
+{
     int i, j, min, temp;
-    for (i = 0; i < num - 1; i++) {
+    for (i = 0; i < num - 1; i++)
+    {
         min = i;
-        for (j = i + 1; j < num; j++) {
-            if (vet[j] < vet[min]) {
+        for (j = i + 1; j < num; j++)
+        {
+            if (vet[j] < vet[min])
+            {
                 min = j;
             }
         }
@@ -247,7 +297,8 @@ void selecaoDireta(int vet[], int num) {
 
 /*parte do quicksort*/
 
-void trocar(int* a, int* b) {
+void trocar(int *a, int *b)
+{
     int t = *a;
     *a = *b;
     *b = t;
@@ -255,12 +306,15 @@ void trocar(int* a, int* b) {
 
 /*parte do quicksort*/
 
-int particiona(int vet[], int inicio, int fim) {
+int particiona(int vet[], int inicio, int fim)
+{
     int pivo = vet[fim];
     int i = (inicio - 1);
 
-    for (int j = inicio; j <= fim - 1; j++) {
-        if (vet[j] <= pivo) {
+    for (int j = inicio; j <= fim - 1; j++)
+    {
+        if (vet[j] <= pivo)
+        {
             i++;
             trocar(&vet[i], &vet[j]);
         }
@@ -269,8 +323,10 @@ int particiona(int vet[], int inicio, int fim) {
     return (i + 1);
 }
 
-void quicksort(int vet[], int inicio, int fim) {
-    if (inicio < fim) {
+void quicksort(int vet[], int inicio, int fim)
+{
+    if (inicio < fim)
+    {
         int pi = particiona(vet, inicio, fim);
 
         quicksort(vet, inicio, pi - 1);
@@ -279,9 +335,12 @@ void quicksort(int vet[], int inicio, int fim) {
 }
 
 /*parte do bogosort*/
-int esta_ordenado(int vet[], int tam) {
-    for (int i = 0; i < tam - 1; i++) {
-        if (vet[i] > vet[i + 1]) {
+int esta_ordenado(int vet[], int tam)
+{
+    for (int i = 0; i < tam - 1; i++)
+    {
+        if (vet[i] > vet[i + 1])
+        {
             return 0;
         }
     }
@@ -289,8 +348,10 @@ int esta_ordenado(int vet[], int tam) {
 }
 
 /*parte do bogosort*/
-void embaralhar(int vet[], int tam) {
-    for (int i = 0; i < tam; i++) {
+void embaralhar(int vet[], int tam)
+{
+    for (int i = 0; i < tam; i++)
+    {
         int temp = vet[i];
         int j = rand() % tam;
         vet[i] = vet[j];
@@ -298,29 +359,36 @@ void embaralhar(int vet[], int tam) {
     }
 }
 
-void bogoSort(int vet[], int tam) {
-    while (!esta_ordenado(vet, tam)) {
+void bogoSort(int vet[], int tam)
+{
+    while (!esta_ordenado(vet, tam))
+    {
         embaralhar(vet, tam);
     }
 }
 
-void copiaVetor(int vetbase[], int vet[], int tam){
-    for (int i = 0; i < tam; i++) {
+void copiaVetor(int vetbase[], int vet[], int tam)
+{
+    for (int i = 0; i < tam; i++)
+    {
         vet[i] = vetbase[i];
     }
 }
 
-void merge(int vet[], int esq, int meio, int dir) {
+void merge(int vet[], int esq, int meio, int dir)
+{
     int i, j, k;
     int n1 = meio - esq + 1;
     int n2 = dir - meio;
 
     int L[n1], R[n2];
 
-    for (i = 0; i < n1; i++) {
+    for (i = 0; i < n1; i++)
+    {
         L[i] = vet[esq + i];
     }
-    for (j = 0; j < n2; j++) {
+    for (j = 0; j < n2; j++)
+    {
         R[j] = vet[meio + 1 + j];
     }
 
@@ -328,32 +396,40 @@ void merge(int vet[], int esq, int meio, int dir) {
     j = 0;
     k = esq;
 
-    while (i < n1 && j < n2) {
-        if (L[i] <= R[j]) {
+    while (i < n1 && j < n2)
+    {
+        if (L[i] <= R[j])
+        {
             vet[k] = L[i];
             i++;
-        } else {
+        }
+        else
+        {
             vet[k] = R[j];
             j++;
         }
         k++;
     }
 
-    while (i < n1) {
+    while (i < n1)
+    {
         vet[k] = L[i];
         i++;
         k++;
     }
 
-    while (j < n2) {
+    while (j < n2)
+    {
         vet[k] = R[j];
         j++;
         k++;
     }
 }
 
-void merge_sort_recursivo(int vet[], int esq, int dir) {
-    if (esq < dir) {
+void merge_sort_recursivo(int vet[], int esq, int dir)
+{
+    if (esq < dir)
+    {
         int meio = esq + (dir - esq) / 2;
 
         merge_sort_recursivo(vet, esq, meio);
@@ -363,24 +439,29 @@ void merge_sort_recursivo(int vet[], int esq, int dir) {
     }
 }
 
-void merge_sort(int vet[], int tam) {
-    if (tam > 1) {
+void merge_sort(int vet[], int tam)
+{
+    if (tam > 1)
+    {
         merge_sort_recursivo(vet, 0, tam - 1);
     }
 }
 
 /*Função genérica para salvar dados de algoritmos em JSON*/
-void salvarDadosJSON(const char *nomeArquivo, const char *questao, 
-                     DadosAlgoritmo *algoritmos, int num_algoritmos) {
+void salvarDadosJSON(const char *nomeArquivo, const char *questao,
+                     DadosAlgoritmo *algoritmos, int num_algoritmos)
+{
     FILE *arquivo = fopen(nomeArquivo, "w");
-    if(arquivo != NULL) {
+    if (arquivo != NULL)
+    {
         setlocale(LC_NUMERIC, "C"); // Usar ponto decimal
-        
+
         fprintf(arquivo, "{\n");
         fprintf(arquivo, "  \"questao\": \"%s\",\n", questao);
         fprintf(arquivo, "  \"algoritmos\": [\n");
-        
-        for(int i = 0; i < num_algoritmos; i++) {
+
+        for (int i = 0; i < num_algoritmos; i++)
+        {
             fprintf(arquivo, "    {\n");
             fprintf(arquivo, "      \"nome\": \"%s\",\n", algoritmos[i].nome);
             fprintf(arquivo, "      \"algoritmo\": \"%s\",\n", algoritmos[i].algoritmo);
@@ -388,26 +469,70 @@ void salvarDadosJSON(const char *nomeArquivo, const char *questao,
             fprintf(arquivo, "      \"desvio_padrao\": %.6lf,\n", algoritmos[i].desvio_padrao);
             fprintf(arquivo, "      \"numero_execucoes\": %d,\n", algoritmos[i].numero_execucoes);
             fprintf(arquivo, "      \"tempos_execucao\": [");
-            
-            for(int j = 0; j < algoritmos[i].numero_execucoes; j++) {
+
+            for (int j = 0; j < algoritmos[i].numero_execucoes; j++)
+            {
                 fprintf(arquivo, "%.6lf", algoritmos[i].tempos[j]);
-                if(j < algoritmos[i].numero_execucoes - 1) fprintf(arquivo, ", ");
+                if (j < algoritmos[i].numero_execucoes - 1)
+                    fprintf(arquivo, ", ");
             }
             fprintf(arquivo, "]\n");
             fprintf(arquivo, "    }");
-            
-            if(i < num_algoritmos - 1) fprintf(arquivo, ",");
+
+            if (i < num_algoritmos - 1)
+                fprintf(arquivo, ",");
             fprintf(arquivo, "\n");
         }
-        
+
         fprintf(arquivo, "  ],\n");
         fprintf(arquivo, "  \"timestamp\": \"2026-04-19\"\n");
         fprintf(arquivo, "}\n");
         fclose(arquivo);
-        
+
         setlocale(LC_NUMERIC, "pt_BR.UTF8"); // Restaurar locale
         printf("Dados salvos em %s\n", nomeArquivo);
     }
 }
+// Funções para o grafico
+void criaVetorDesordenadoComTamanho(int tam)
+{
+    for (int i = 0; i < tam; i++)
+    {
+        vetor[i] = rand() % tam;
+    }
+}
 
+void criaVetorOrdenadoComTamanho(int tam)
+{
+    vetor[0] = rand() % 1000;
+    for (int i = 1; i < tam; i++)
+    {
+        vetor[i] = vetor[i - 1] + (rand() % 100);
+    }
+}
 
+int buscaSequencialLimitado(unsigned long int chave, int tam)
+{
+    for (int i = 0; i < tam; i++)
+    {
+        if (vetor[i] == chave)
+            return i;
+    }
+    return -1;
+}
+
+int buscaBinariaLimitada(unsigned long int chave, int tam)
+{
+    int inicio = 0, fim = tam - 1;
+    while (inicio <= fim)
+    {
+        int meio = (inicio + fim) / 2;
+        if (vetor[meio] == chave)
+            return meio;
+        if (vetor[meio] < chave)
+            inicio = meio + 1;
+        else
+            fim = meio - 1;
+    }
+    return -1;
+}
