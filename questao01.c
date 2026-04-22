@@ -91,6 +91,7 @@ int main() {
     // Busca Sequencial
     algoritmos[0].nome = "Busca Sequencial";
     algoritmos[0].algoritmo = "Busca Sequencial";
+    algoritmos[0].tamanho = 1000000;
     algoritmos[0].media = mediaSeq;
     algoritmos[0].desvio_padrao = desvioSeq;
     algoritmos[0].numero_execucoes = 30;
@@ -99,6 +100,7 @@ int main() {
     // Busca Binária
     algoritmos[1].nome = "Busca Binária";
     algoritmos[1].algoritmo = "Busca Binária";
+    algoritmos[1].tamanho = 1000000;
     algoritmos[1].media = mediaBin;
     algoritmos[1].desvio_padrao = desvioBin;
     algoritmos[1].numero_execucoes = 30;

@@ -96,6 +96,7 @@ int main(){
     // Busca em Vetor
     algoritmos[0].nome = "Busca em Vetor";
     algoritmos[0].algoritmo = "Vetor";
+    algoritmos[0].tamanho = 1000000;
     algoritmos[0].media = mediaVetor;
     algoritmos[0].desvio_padrao = desvioVet;
     algoritmos[0].numero_execucoes = 30;
@@ -104,6 +105,7 @@ int main(){
     // Busca em Lista
     algoritmos[1].nome = "Busca em Lista";
     algoritmos[1].algoritmo = "Lista Encadeada";
+    algoritmos[1].tamanho = 1000000;
     algoritmos[1].media = mediaLista;
     algoritmos[1].desvio_padrao = desvioLst;
     algoritmos[1].numero_execucoes = 30;

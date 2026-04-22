@@ -83,6 +83,7 @@ void merge_sort(int vet[], int tam);
 /*Estrutura para armazenar dados de um algoritmo*/
 typedef struct {
     char *nome;                 /*Nome exibível do algoritmo*/
+    int tamanho;
     char *algoritmo;            /*Tipo/categoria do algoritmo*/
     double media;               /*Média dos tempos*/
     double desvio_padrao;       /*Desvio padrão*/

@@ -3,76 +3,27 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"image/color"
 	"os"
 	"path/filepath"
 	"sort"
 
 	"github.com/pterm/pterm"
-
 	"gonum.org/v1/plot"
 	"gonum.org/v1/plot/plotter"
 	"gonum.org/v1/plot/vg"
+	"gonum.org/v1/plot/vg/draw"
 )
 
-func gerarGrafico(nome string, pontos []Ponto) {
-	var pts plotter.XYs
-
-	for _, p := range pontos {
-		pts = append(pts, plotter.XY{
-			X: p.Tamanho,
-			Y: p.Tempo,
-		})
-	}
-
-	p := plot.New()
-	p.Title.Text = nome
-	p.X.Label.Text = "Tamanho do vetor"
-	p.Y.Label.Text = "Tempo (ms)"
-
-	linha, _ := plotter.NewLine(pts)
-	p.Add(linha)
-
-	p.Save(8*vg.Inch, 4*vg.Inch, nome+".png")
-}
-
-func lerGraficoJSON(caminhoArquivo string) ([]AlgoritmoGrafico, error) {
-	conteudo, err := os.ReadFile(caminhoArquivo)
-	if err != nil {
-		return nil, err
-	}
-
-	var dados struct {
-		Algoritmos []AlgoritmoGrafico `json:"algoritmos"`
-	}
-
-	err = json.Unmarshal(conteudo, &dados)
-	if err != nil {
-		return nil, err
-	}
-
-	return dados.Algoritmos, nil
-}
-
 // Algoritmo armazena dados de um algoritmo
-type Ponto struct {
-	Tamanho float64 `json:"tamanho"`
-	Tempo   float64 `json:"tempo"`
-}
-
-// estrutura antiga (mantém)
 type Algoritmo struct {
 	Nome            string    `json:"nome"`
 	Algoritmo       string    `json:"algoritmo"`
+	Tamanho         int       `json:"tamanho"` // Essencial para o eixo X
 	Media           float64   `json:"media"`
 	DesvioPadrao    float64   `json:"desvio_padrao"`
 	NumeroExecucoes int       `json:"numero_execucoes"`
 	TemposExecucao  []float64 `json:"tempos_execucao"`
-}
-
-// estrutura nova (gráfico)
-type AlgoritmoGrafico struct {
-	Nome   string  `json:"nome"`
-	Pontos []Ponto `json:"pontos"`
 }
 
 // DadosQuestao armazena os dados de uma questão
@@ -84,7 +35,7 @@ type DadosQuestao struct {
 
 func main() {
 	pterm.DefaultHeader.WithFullWidth(false).Println("📊 VISUALIZAÇÃO DE RESULTADOS - AED II")
-	pterm.Info.Println("Lendo arquivos de dados gerados...")
+	pterm.Info.Println("A ler ficheiros de dados gerados...")
 	pterm.Println()
 
 	workDir, err := os.Getwd()
@@ -93,14 +44,17 @@ func main() {
 		return
 	}
 
+	// ADICIONADO: A Questão 5 agora faz parte do pipeline de visualização
 	questoes := []struct {
 		nome      string
 		arquivo   string
 		descricao string
 	}{
-		{"questao01", "questao01_dados.json", "Busca Sequencial vs Binária"},
-		{"questao02", "questao02_dados.json", "Busca em Vetor vs Lista"},
-		{"questao03", "questao03_dados.json", "Algoritmos de Ordenação"},
+		{"questao01", "questao01_dados.json", "Q1: Busca Sequencial vs Binária (1M)"},
+		{"questao02", "questao02_dados.json", "Q2: Busca em Vetor vs Lista (1M)"},
+		{"questao03", "questao03_dados.json", "Q3: Ordenação (100k)"},
+		{"questao05_ord", "questao05_ordena_dados.json", "GRÁFICO: Ordenações (10k a 100k)"},
+		{"questao05_busca", "questao05_busca_dados.json", "GRÁFICO: Buscas (100k a 1 Milhão)"},
 	}
 
 	arquivosEncontrados := 0
@@ -123,35 +77,22 @@ func main() {
 			continue
 		}
 
-		// Exibir tabela
+		// Exibir tabela no terminal
 		exibirTabela(q.descricao, dados)
+
+		if q.nome == "questao05_ord" || q.nome == "questao05_busca" {
+			gerarGraficoComparativo(q.nome, q.descricao, dados.Algoritmos)
+		}
 	}
 
 	if arquivosEncontrados == 0 {
 		pterm.Error.Println("❌ Nenhum arquivo de dados foi encontrado!")
-		pterm.Info.Println("Execute os programas C (questao01.exe, questao02.exe, questao03.exe) primeiro.")
+		pterm.Info.Println("Execute os programas em C primeiro.")
 		return
 	}
 
-	pterm.Success.Println("✅ Visualização concluída com sucesso!")
-
 	pterm.Println()
-	pterm.DefaultSection.Println("📈 Gerando gráficos...")
-
-	for _, q := range questoes {
-
-		algoritmosGrafico, err := lerGraficoJSON(q.arquivo)
-		if err != nil {
-			continue
-		}
-
-		for _, alg := range algoritmosGrafico {
-			pterm.Info.Printf("Gerando gráfico: %s\n", alg.Nome)
-			gerarGrafico(alg.Nome, alg.Pontos)
-		}
-	}
-
-	pterm.Success.Println("📊 Gráficos gerados!")
+	pterm.Success.Println("✅ Visualização e geração de gráficos concluídas com sucesso!")
 }
 
 // lerArquivoJSON lê e desserializa um arquivo JSON
@@ -177,12 +118,17 @@ func exibirTabela(descricao string, dados *DadosQuestao) {
 	pterm.Println()
 
 	for _, algo := range dados.Algoritmos {
-		// Criar tabela para este algoritmo
 		tableData := pterm.TableData{
 			{"Métrica", "Valor"},
 			{"Algoritmo", algo.Nome},
-			{"Média (ms)", fmt.Sprintf("%.6f", algo.Media)},
 		}
+
+		// Só exibe o tamanho se ele for maior que 0
+		if algo.Tamanho > 0 {
+			tableData = append(tableData, []string{"Tamanho (N)", fmt.Sprintf("%d", algo.Tamanho)})
+		}
+		
+		tableData = append(tableData, []string{"Média (ms)", fmt.Sprintf("%.6f", algo.Media)})
 
 		if algo.DesvioPadrao > 0 {
 			tableData = append(tableData, []string{"Desvio Padrão (ms)", fmt.Sprintf("%.6f", algo.DesvioPadrao)})
@@ -190,12 +136,10 @@ func exibirTabela(descricao string, dados *DadosQuestao) {
 
 		tableData = append(tableData, []string{"Execuções", fmt.Sprintf("%d", algo.NumeroExecucoes)})
 
-		// Adicionar tempos individuais se houver
-		if len(algo.TemposExecucao) > 0 {
+		if len(algo.TemposExecucao) > 0 && algo.NumeroExecucoes > 1 {
 			tableData = append(tableData, []string{"", ""})
 			tableData = append(tableData, []string{"Tempos Individuais", ""})
 
-			// Mostrar apenas até 15 tempos para não ficar muito grande
 			limite := len(algo.TemposExecucao)
 			if limite > 15 {
 				limite = 15
@@ -207,16 +151,8 @@ func exibirTabela(descricao string, dados *DadosQuestao) {
 					fmt.Sprintf("%.6f", algo.TemposExecucao[i]),
 				})
 			}
-
-			if len(algo.TemposExecucao) > 15 {
-				tableData = append(tableData, []string{
-					fmt.Sprintf("  ... (%d mais)", len(algo.TemposExecucao)-15),
-					"",
-				})
-			}
 		}
 
-		// Renderizar tabela
 		err := pterm.DefaultTable.WithHasHeader(true).WithData(tableData).Render()
 		if err != nil {
 			pterm.Error.Println("Erro ao renderizar tabela:", err)
@@ -224,7 +160,6 @@ func exibirTabela(descricao string, dados *DadosQuestao) {
 		pterm.Println()
 	}
 
-	// Exibir resumo comparativo se houver múltiplos algoritmos
 	if len(dados.Algoritmos) > 1 {
 		exibirResumoComparativo(dados.Algoritmos)
 	}
@@ -235,20 +170,24 @@ func exibirResumoComparativo(algoritmos []Algoritmo) {
 	pterm.Println()
 	pterm.DefaultSection.Println("📊 Resumo Comparativo")
 
-	// Criar tabela comparativa
 	tableData := pterm.TableData{
-		{"Algoritmo", "Média (ms)", "Desvio Padrão", "Execuções"},
+		{"Algoritmo", "Tamanho", "Média (ms)", "Desvio Padrão", "Execuções"},
 	}
 
-	// Ordenar por média (melhor para pior)
 	sort.Slice(algoritmos, func(i, j int) bool {
 		return algoritmos[i].Media < algoritmos[j].Media
 	})
 
 	for i, algo := range algoritmos {
 		posicao := fmt.Sprintf("%d. %s", i+1, algo.Nome)
+		tamanhoStr := "-"
+		if algo.Tamanho > 0 {
+			tamanhoStr = fmt.Sprintf("%d", algo.Tamanho)
+		}
+
 		tableData = append(tableData, []string{
 			posicao,
+			tamanhoStr,
 			fmt.Sprintf("%.6f", algo.Media),
 			fmt.Sprintf("%.6f", algo.DesvioPadrao),
 			fmt.Sprintf("%d", algo.NumeroExecucoes),
@@ -260,4 +199,73 @@ func exibirResumoComparativo(algoritmos []Algoritmo) {
 		pterm.Error.Println("Erro ao renderizar tabela:", err)
 	}
 	pterm.Println()
+}
+
+// gerarGraficoComparativo agrupa os dados por algoritmo e plota as linhas
+func gerarGraficoComparativo(nomeArquivoBase string, titulo string, algoritmos []Algoritmo) {
+	p := plot.New()
+	p.Title.Text = titulo
+	p.X.Label.Text = "Tamanho da Estrutura (N)"
+	p.Y.Label.Text = "Tempo Médio (ms)"
+
+	dadosPorAlgoritmo := make(map[string]plotter.XYs)
+
+	for _, alg := range algoritmos {
+		nomeGrupo := alg.Nome
+
+		if alg.Tamanho == 0 {
+			continue
+		}
+
+		dadosPorAlgoritmo[nomeGrupo] = append(dadosPorAlgoritmo[nomeGrupo], plotter.XY{
+			X: float64(alg.Tamanho),
+			Y: alg.Media,
+		})
+	}
+
+	cores := []color.RGBA{
+		{R: 0, G: 102, B: 204, A: 255},   // Azul forte
+		{R: 204, G: 0, B: 0, A: 255},     // Vermelho
+		{R: 0, G: 153, B: 51, A: 255},    // Verde
+		{R: 255, G: 128, B: 0, A: 255},   // Laranja
+		{R: 102, G: 0, B: 204, A: 255},   // Roxo
+	}
+	corIdx := 0
+
+	for nomeGrupo, pts := range dadosPorAlgoritmo {
+		sort.Slice(pts, func(i, j int) bool {
+			return pts[i].X < pts[j].X
+		})
+
+		linha, err := plotter.NewLine(pts)
+		if err != nil {
+			continue
+		}
+
+		pontos, err := plotter.NewScatter(pts)
+		if err != nil {
+			continue
+		}
+
+		corAtual := cores[corIdx%len(cores)]
+		linha.Color = corAtual
+		linha.Width = vg.Points(2)
+		pontos.Color = corAtual
+		pontos.Shape = draw.CircleGlyph{}
+
+		p.Add(linha, pontos)
+		p.Legend.Add(nomeGrupo, linha, pontos)
+
+		corIdx++
+	}
+
+	p.Legend.Top = true
+	p.Legend.Left = true
+
+	nomeSaida := fmt.Sprintf("%s_grafico.png", nomeArquivoBase)
+	if err := p.Save(8*vg.Inch, 5*vg.Inch, nomeSaida); err != nil {
+		pterm.Error.Printf("❌ Erro ao salvar gráfico %s: %v\n", nomeSaida, err)
+	} else {
+		pterm.Success.Printf("📈 Gráfico gerado e salvo como: %s\n", nomeSaida)
+	}
 }

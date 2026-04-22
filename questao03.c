@@ -9,6 +9,7 @@ int main()
 {
     srand(time(NULL));
     setlocale(LC_ALL, "pt_BR.UTF8");
+    setlocale(LC_NUMERIC, "C"); // Mantém o ponto nos números para o JSON não quebrar!
 
     int vet[100000];
     int vetbase[100000];
@@ -37,7 +38,7 @@ int main()
         somaTemposBubble += tempoAtual;
 
         copiaVetor(vetbase, vet, 100000);
-
+        
         clock_gettime(CLOCK_REALTIME, &inicio);
         insercaoDireta(vet, 100000);
         clock_gettime(CLOCK_REALTIME, &fim);
@@ -47,7 +48,7 @@ int main()
         somaTemposInsertion += tempoAtual;
 
         copiaVetor(vetbase, vet, 100000);
-
+        
         clock_gettime(CLOCK_REALTIME, &inicio);
         selecaoDireta(vet, 100000);
         clock_gettime(CLOCK_REALTIME, &fim);
@@ -57,9 +58,9 @@ int main()
         somaTemposSelection += tempoAtual;
 
         copiaVetor(vetbase, vet, 100000);
-
+        
         clock_gettime(CLOCK_REALTIME, &inicio);
-        quicksort(vet, 0, 100000 - 1);
+        quicksort(vet, 0, 99999);
         clock_gettime(CLOCK_REALTIME, &fim);
         tempoAtual = tempoDeExecucao(inicio, fim);
         printf("Tempo de execução quicksort: %.6lf milissegundos\n", tempoAtual);
@@ -67,53 +68,33 @@ int main()
         somaTemposQuick += tempoAtual;
 
         copiaVetor(vetbase, vet, 100000);
-
+        
         clock_gettime(CLOCK_REALTIME, &inicio);
-        merge_sort(vet, 100000 - 1);
+        merge_sort(vet, 99999);
         clock_gettime(CLOCK_REALTIME, &fim);
         tempoAtual = tempoDeExecucao(inicio, fim);
         printf("Tempo de execução merge sort: %.6lf milissegundos\n", tempoAtual);
         temposMerge[cont] = tempoAtual;
         somaTemposMerge += tempoAtual;
-        printf("=====================\n");
     }
 
     printf("\n");
     printf("=====================\n");
-    media = somaTemposBubble / 10;
-    printf("Média das execuções (BUBBLE SORT): %.6lf milissegundos\n", media);
+    printf("RESUMO FINAL\n");
     printf("=====================\n");
-
-    printf("\n");
+    printf("Média das 10 execuções (BUBBLE SORT): %.6lf milissegundos\n", somaTemposBubble / 10);
+    printf("Média das 10 execuções (INSERTION SORT): %.6lf milissegundos\n", somaTemposInsertion / 10);
+    printf("Média das 10 execuções (SELECTION SORT): %.6lf milissegundos\n", somaTemposSelection / 10);
+    printf("Média das 10 execuções (QUICK SORT): %.6lf milissegundos\n", somaTemposQuick / 10);
+    printf("Média das 10 execuções (MERGE SORT): %.6lf milissegundos\n", somaTemposMerge / 10);
     printf("=====================\n");
-    media = somaTemposInsertion / 10;
-    printf("Média das execuções (INSERTION SORT): %.6lf milissegundos\n", media);
-    printf("=====================\n");
-
-    printf("\n");
-    printf("=====================\n");
-    media = somaTemposSelection / 10;
-    printf("Média das execuções (SELECTION SORT): %.6lf milissegundos\n", media);
-    printf("=====================\n");
-
-    printf("\n");
-    printf("=====================\n");
-    media = somaTemposQuick / 10;
-    printf("Média das execuções (QUICK SORT): %.6lf milissegundos\n", media);
-    printf("=====================\n");
-
-    printf("\n");
-    printf("=====================\n");
-    media = somaTemposMerge / 10;
-    printf("Média das execuções (MERGE SORT): %.6lf milissegundos\n", media);
-    printf("=====================\n");
-
-    // Preparar dados para salvar em JSON
+    
     DadosAlgoritmo algoritmos[5];
-
+    
     // Bubble Sort
     algoritmos[0].nome = "Bubble Sort";
     algoritmos[0].algoritmo = "BUBBLE SORT";
+    algoritmos[0].tamanho = 100000;
     algoritmos[0].media = somaTemposBubble / 10;
     algoritmos[0].desvio_padrao = desvioPadrao(temposBubble, algoritmos[0].media);
     algoritmos[0].numero_execucoes = 10;
@@ -122,6 +103,7 @@ int main()
     // Insertion Sort
     algoritmos[1].nome = "Insertion Sort";
     algoritmos[1].algoritmo = "INSERTION SORT";
+    algoritmos[1].tamanho = 100000;
     algoritmos[1].media = somaTemposInsertion / 10;
     algoritmos[1].desvio_padrao = desvioPadrao(temposInsertion, algoritmos[1].media);
     algoritmos[1].numero_execucoes = 10;
@@ -130,6 +112,7 @@ int main()
     // Selection Sort
     algoritmos[2].nome = "Selection Sort";
     algoritmos[2].algoritmo = "SELECTION SORT";
+    algoritmos[2].tamanho = 100000;
     algoritmos[2].media = somaTemposSelection / 10;
     algoritmos[2].desvio_padrao = desvioPadrao(temposSelection, algoritmos[2].media);
     algoritmos[2].numero_execucoes = 10;
@@ -138,6 +121,7 @@ int main()
     // Quick Sort
     algoritmos[3].nome = "Quick Sort";
     algoritmos[3].algoritmo = "QUICK SORT";
+    algoritmos[3].tamanho = 100000;
     algoritmos[3].media = somaTemposQuick / 10;
     algoritmos[3].desvio_padrao = desvioPadrao(temposQuick, algoritmos[3].media);
     algoritmos[3].numero_execucoes = 10;
@@ -146,13 +130,13 @@ int main()
     // Merge Sort
     algoritmos[4].nome = "Merge Sort";
     algoritmos[4].algoritmo = "MERGE SORT";
+    algoritmos[4].tamanho = 100000;
     algoritmos[4].media = somaTemposMerge / 10;
     algoritmos[4].desvio_padrao = desvioPadrao(temposMerge, algoritmos[4].media);
     algoritmos[4].numero_execucoes = 10;
     algoritmos[4].tempos = temposMerge;
 
-    // Salvar em JSON usando função genérica
-    salvarDadosJSON("questao03_dados.json", "questao03", algoritmos, 5);
+    salvarDadosJSON("questao03", "questao03_dados.json", algoritmos, 5);
 
     return 0;
 }
