@@ -81,5 +81,33 @@ int main() {
 
     printf("\n");
     printf("Final do programa !!\n");
+    
+    // Preparar dados para salvar em JSON
+    double desvioSeq = desvioPadrao(temposSeq, mediaSeq);
+    double desvioBin = desvioPadrao(temposBin, mediaBin);
+    
+    DadosAlgoritmo algoritmos[2];
+    
+    // Busca Sequencial
+    algoritmos[0].nome = "Busca Sequencial";
+    algoritmos[0].algoritmo = "Busca Sequencial";
+    algoritmos[0].tamanho = 1000000;
+    algoritmos[0].media = mediaSeq;
+    algoritmos[0].desvio_padrao = desvioSeq;
+    algoritmos[0].numero_execucoes = 30;
+    algoritmos[0].tempos = temposSeq;
+    
+    // Busca Binária
+    algoritmos[1].nome = "Busca Binária";
+    algoritmos[1].algoritmo = "Busca Binária";
+    algoritmos[1].tamanho = 1000000;
+    algoritmos[1].media = mediaBin;
+    algoritmos[1].desvio_padrao = desvioBin;
+    algoritmos[1].numero_execucoes = 30;
+    algoritmos[1].tempos = temposBin;
+    
+    // Salvar em JSON usando função genérica
+    salvarDadosJSON("questao01_dados.json", "questao01", algoritmos, 2);
+    
     return 0;
 }

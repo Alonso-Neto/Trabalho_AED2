@@ -1,0 +1,94 @@
+{
+    "algoritmos": [
+        {
+            "nome": "Busca em Vetor",
+            "pontos": [
+                {
+                    "tamanho": 100000,
+                    "tempo": 0.8
+                },
+                {
+                    "tamanho": 200000,
+                    "tempo": 1.2
+                },
+                {
+                    "tamanho": 300000,
+                    "tempo": 1.6
+                },
+                {
+                    "tamanho": 400000,
+                    "tempo": 2.0
+                },
+                {
+                    "tamanho": 500000,
+                    "tempo": 2.4
+                },
+                {
+                    "tamanho": 600000,
+                    "tempo": 2.8
+                },
+                {
+                    "tamanho": 700000,
+                    "tempo": 3.2
+                },
+                {
+                    "tamanho": 800000,
+                    "tempo": 3.6
+                },
+                {
+                    "tamanho": 900000,
+                    "tempo": 4.0
+                },
+                {
+                    "tamanho": 1000000,
+                    "tempo": 4.5
+                }
+            ]
+        },
+        {
+            "nome": "Busca em Lista",
+            "pontos": [
+                {
+                    "tamanho": 100000,
+                    "tempo": 1.5
+                },
+                {
+                    "tamanho": 200000,
+                    "tempo": 2.2
+                },
+                {
+                    "tamanho": 300000,
+                    "tempo": 3.0
+                },
+                {
+                    "tamanho": 400000,
+                    "tempo": 3.8
+                },
+                {
+                    "tamanho": 500000,
+                    "tempo": 4.6
+                },
+                {
+                    "tamanho": 600000,
+                    "tempo": 5.5
+                },
+                {
+                    "tamanho": 700000,
+                    "tempo": 6.3
+                },
+                {
+                    "tamanho": 800000,
+                    "tempo": 7.2
+                },
+                {
+                    "tamanho": 900000,
+                    "tempo": 8.0
+                },
+                {
+                    "tamanho": 1000000,
+                    "tempo": 9.0
+                }
+            ]
+        }
+    ]
+}

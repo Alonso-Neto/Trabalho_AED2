@@ -1,0 +1,229 @@
+{
+    "algoritmos": [
+        {
+            "nome": "Bubble Sort",
+            "pontos": [
+                {
+                    "tamanho": 10000,
+                    "tempo": 500
+                },
+                {
+                    "tamanho": 20000,
+                    "tempo": 2000
+                },
+                {
+                    "tamanho": 30000,
+                    "tempo": 4500
+                },
+                {
+                    "tamanho": 40000,
+                    "tempo": 8000
+                },
+                {
+                    "tamanho": 50000,
+                    "tempo": 12500
+                },
+                {
+                    "tamanho": 60000,
+                    "tempo": 18000
+                },
+                {
+                    "tamanho": 70000,
+                    "tempo": 24500
+                },
+                {
+                    "tamanho": 80000,
+                    "tempo": 32000
+                },
+                {
+                    "tamanho": 90000,
+                    "tempo": 40500
+                },
+                {
+                    "tamanho": 100000,
+                    "tempo": 50000
+                }
+            ]
+        },
+        {
+            "nome": "Insertion Sort",
+            "pontos": [
+                {
+                    "tamanho": 10000,
+                    "tempo": 200
+                },
+                {
+                    "tamanho": 20000,
+                    "tempo": 800
+                },
+                {
+                    "tamanho": 30000,
+                    "tempo": 1800
+                },
+                {
+                    "tamanho": 40000,
+                    "tempo": 3200
+                },
+                {
+                    "tamanho": 50000,
+                    "tempo": 5000
+                },
+                {
+                    "tamanho": 60000,
+                    "tempo": 7200
+                },
+                {
+                    "tamanho": 70000,
+                    "tempo": 9800
+                },
+                {
+                    "tamanho": 80000,
+                    "tempo": 12800
+                },
+                {
+                    "tamanho": 90000,
+                    "tempo": 16200
+                },
+                {
+                    "tamanho": 100000,
+                    "tempo": 20000
+                }
+            ]
+        },
+        {
+            "nome": "Selection Sort",
+            "pontos": [
+                {
+                    "tamanho": 10000,
+                    "tempo": 300
+                },
+                {
+                    "tamanho": 20000,
+                    "tempo": 1200
+                },
+                {
+                    "tamanho": 30000,
+                    "tempo": 2700
+                },
+                {
+                    "tamanho": 40000,
+                    "tempo": 4800
+                },
+                {
+                    "tamanho": 50000,
+                    "tempo": 7500
+                },
+                {
+                    "tamanho": 60000,
+                    "tempo": 10800
+                },
+                {
+                    "tamanho": 70000,
+                    "tempo": 14700
+                },
+                {
+                    "tamanho": 80000,
+                    "tempo": 19200
+                },
+                {
+                    "tamanho": 90000,
+                    "tempo": 24300
+                },
+                {
+                    "tamanho": 100000,
+                    "tempo": 30000
+                }
+            ]
+        },
+        {
+            "nome": "Quick Sort",
+            "pontos": [
+                {
+                    "tamanho": 10000,
+                    "tempo": 5
+                },
+                {
+                    "tamanho": 20000,
+                    "tempo": 8
+                },
+                {
+                    "tamanho": 30000,
+                    "tempo": 12
+                },
+                {
+                    "tamanho": 40000,
+                    "tempo": 15
+                },
+                {
+                    "tamanho": 50000,
+                    "tempo": 18
+                },
+                {
+                    "tamanho": 60000,
+                    "tempo": 22
+                },
+                {
+                    "tamanho": 70000,
+                    "tempo": 25
+                },
+                {
+                    "tamanho": 80000,
+                    "tempo": 28
+                },
+                {
+                    "tamanho": 90000,
+                    "tempo": 30
+                },
+                {
+                    "tamanho": 100000,
+                    "tempo": 35
+                }
+            ]
+        },
+        {
+            "nome": "Merge Sort",
+            "pontos": [
+                {
+                    "tamanho": 10000,
+                    "tempo": 8
+                },
+                {
+                    "tamanho": 20000,
+                    "tempo": 12
+                },
+                {
+                    "tamanho": 30000,
+                    "tempo": 18
+                },
+                {
+                    "tamanho": 40000,
+                    "tempo": 22
+                },
+                {
+                    "tamanho": 50000,
+                    "tempo": 26
+                },
+                {
+                    "tamanho": 60000,
+                    "tempo": 30
+                },
+                {
+                    "tamanho": 70000,
+                    "tempo": 34
+                },
+                {
+                    "tamanho": 80000,
+                    "tempo": 38
+                },
+                {
+                    "tamanho": 90000,
+                    "tempo": 42
+                },
+                {
+                    "tamanho": 100000,
+                    "tempo": 45
+                }
+            ]
+        }
+    ]
+}
