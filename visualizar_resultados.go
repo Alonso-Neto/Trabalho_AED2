@@ -34,7 +34,7 @@ type DadosQuestao struct {
 }
 
 func main() {
-	pterm.DefaultHeader.WithFullWidth(false).Println("📊 VISUALIZAÇÃO DE RESULTADOS - AED II")
+	pterm.DefaultHeader.WithFullWidth(false).Println("VISUALIZAÇÃO DE RESULTADOS - AED II")
 	pterm.Info.Println("A ler ficheiros de dados gerados...")
 	pterm.Println()
 
@@ -64,7 +64,7 @@ func main() {
 
 		// Verificar se arquivo existe
 		if _, err := os.Stat(caminhoArquivo); os.IsNotExist(err) {
-			pterm.Warning.Printf("⚠️  Arquivo não encontrado: %s\n", q.arquivo)
+			pterm.Warning.Printf("Arquivo não encontrado: %s\n", q.arquivo)
 			continue
 		}
 
@@ -86,13 +86,13 @@ func main() {
 	}
 
 	if arquivosEncontrados == 0 {
-		pterm.Error.Println("❌ Nenhum arquivo de dados foi encontrado!")
+		pterm.Error.Println("Nenhum arquivo de dados foi encontrado!")
 		pterm.Info.Println("Execute os programas em C primeiro.")
 		return
 	}
 
 	pterm.Println()
-	pterm.Success.Println("✅ Visualização e geração de gráficos concluídas com sucesso!")
+	pterm.Success.Println("Visualização e geração de gráficos concluídas com sucesso!")
 }
 
 // lerArquivoJSON lê e desserializa um arquivo JSON
@@ -114,7 +114,7 @@ func lerArquivoJSON(caminhoArquivo string) (*DadosQuestao, error) {
 // exibirTabela exibe uma tabela formatada com os dados
 func exibirTabela(descricao string, dados *DadosQuestao) {
 	pterm.Println()
-	pterm.DefaultHeader.WithFullWidth(false).Printf("📈 %s\n", descricao)
+	pterm.DefaultHeader.WithFullWidth(false).Printf("%s\n", descricao)
 	pterm.Println()
 
 	for _, algo := range dados.Algoritmos {
@@ -127,7 +127,7 @@ func exibirTabela(descricao string, dados *DadosQuestao) {
 		if algo.Tamanho > 0 {
 			tableData = append(tableData, []string{"Tamanho (N)", fmt.Sprintf("%d", algo.Tamanho)})
 		}
-		
+
 		tableData = append(tableData, []string{"Média (ms)", fmt.Sprintf("%.6f", algo.Media)})
 
 		if algo.DesvioPadrao > 0 {
@@ -168,7 +168,7 @@ func exibirTabela(descricao string, dados *DadosQuestao) {
 // exibirResumoComparativo exibe um resumo comparativo entre algoritmos
 func exibirResumoComparativo(algoritmos []Algoritmo) {
 	pterm.Println()
-	pterm.DefaultSection.Println("📊 Resumo Comparativo")
+	pterm.DefaultSection.Println("Resumo Comparativo")
 
 	tableData := pterm.TableData{
 		{"Algoritmo", "Tamanho", "Média (ms)", "Desvio Padrão", "Execuções"},
@@ -224,11 +224,11 @@ func gerarGraficoComparativo(nomeArquivoBase string, titulo string, algoritmos [
 	}
 
 	cores := []color.RGBA{
-		{R: 0, G: 102, B: 204, A: 255},   // Azul forte
-		{R: 204, G: 0, B: 0, A: 255},     // Vermelho
-		{R: 0, G: 153, B: 51, A: 255},    // Verde
-		{R: 255, G: 128, B: 0, A: 255},   // Laranja
-		{R: 102, G: 0, B: 204, A: 255},   // Roxo
+		{R: 0, G: 102, B: 204, A: 255}, // Azul forte
+		{R: 204, G: 0, B: 0, A: 255},   // Vermelho
+		{R: 0, G: 153, B: 51, A: 255},  // Verde
+		{R: 255, G: 128, B: 0, A: 255}, // Laranja
+		{R: 102, G: 0, B: 204, A: 255}, // Roxo
 	}
 	corIdx := 0
 
@@ -264,8 +264,8 @@ func gerarGraficoComparativo(nomeArquivoBase string, titulo string, algoritmos [
 
 	nomeSaida := fmt.Sprintf("%s_grafico.png", nomeArquivoBase)
 	if err := p.Save(8*vg.Inch, 5*vg.Inch, nomeSaida); err != nil {
-		pterm.Error.Printf("❌ Erro ao salvar gráfico %s: %v\n", nomeSaida, err)
+		pterm.Error.Printf("Erro ao salvar gráfico %s: %v\n", nomeSaida, err)
 	} else {
-		pterm.Success.Printf("📈 Gráfico gerado e salvo como: %s\n", nomeSaida)
+		pterm.Success.Printf("Gráfico gerado e salvo como: %s\n", nomeSaida)
 	}
 }

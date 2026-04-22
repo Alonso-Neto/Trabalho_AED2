@@ -5,18 +5,6 @@
 #include <math.h>
 #include "TAD-Vetorzao.h"
 
-/*Definindo o tipoNo*/
-typedef struct tipoNo {
-    unsigned long int dado;
-    struct tipoNo *prox;
-}tipoNo;
-
-/*Definindo o tipoLista*/
-typedef struct tipoLista{
-    tipoNo *prim;
-    int tamanho;
-}tipoLista;
-
 const int N = 1000000;
 unsigned long int vetor[1000000];
 

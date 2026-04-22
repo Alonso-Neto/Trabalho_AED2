@@ -136,7 +136,7 @@ int main()
     algoritmos[4].numero_execucoes = 10;
     algoritmos[4].tempos = temposMerge;
 
-    salvarDadosJSON("questao03", "questao03_dados.json", algoritmos, 5);
+    salvarDadosJSON("questao03_dados.json", "questao03", algoritmos, 5);
 
     return 0;
 }

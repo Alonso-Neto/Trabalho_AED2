@@ -1,3 +1,8 @@
+#ifndef TAD_VETORZAO_H
+#define TAD_VETORZAO_H
+
+#include <time.h>
+
 /*Definindo o tipoNo*/
 typedef struct tipoNo {
     unsigned long int dado;
@@ -47,7 +52,7 @@ void copiaArquivoParaVetor(unsigned long int vetorDestino[]);
 /*Inicializa a lista encadeada*/
 tipoLista* iniciaLista();
 /*Insere elementos na lista*/
-void inserir(tipoLista *pLista, unsigned long int valor);
+void inserirNaLista(tipoLista *pLista, unsigned long int valor);
 
 /*Copia o vetor do arquivo para a lista encadeada*/
 void copiaArquivorParaLista(tipoLista *pLista);
@@ -92,5 +97,7 @@ typedef struct {
 } DadosAlgoritmo;
 
 /*Salva dados dos algoritmos em arquivo JSON*/
-void salvarDadosJSON(const char *nomeArquivo, const char *questao, 
+void salvarDadosJSON(const char *nomeArquivo, const char *questao,
                      DadosAlgoritmo *algoritmos, int num_algoritmos);
+
+#endif
