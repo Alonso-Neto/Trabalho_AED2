@@ -1,0 +1,22 @@
+{
+  "questao": "questao01",
+  "algoritmos": [
+    {
+      "nome": "Busca Sequencial",
+      "algoritmo": "Busca Sequencial",
+      "tempos_execucao": [],
+      "media": 0,
+      "desvio_padrao": 1,
+      "numero_execucoes": 30
+    },
+    {
+      "nome": "Busca Binária",
+      "algoritmo": "Busca Binária",
+      "tempos_execucao": [],
+      "media": 0,
+      "desvio_padrao": 1,
+      "numero_execucoes": 30
+    }
+  ],
+  "timestamp": "2026-04-19 13:22:00"
+}
