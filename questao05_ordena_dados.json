@@ -1,0 +1,456 @@
+{
+  "questao": "questao05_ordena",
+  "algoritmos": [
+    {
+      "nome": "Bubble Sort",
+      "tamanho": 10000,
+      "algoritmo": "BUBBLE SORT",
+      "media": 318.092470,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [318.092470]
+    },
+    {
+      "nome": "Insertion Sort",
+      "tamanho": 10000,
+      "algoritmo": "INSERTION SORT",
+      "media": 61.841706,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [61.841706]
+    },
+    {
+      "nome": "Selection Sort",
+      "tamanho": 10000,
+      "algoritmo": "SELECTION SORT",
+      "media": 112.918093,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [112.918093]
+    },
+    {
+      "nome": "Quick Sort",
+      "tamanho": 10000,
+      "algoritmo": "QUICK SORT",
+      "media": 1.238990,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [1.238990]
+    },
+    {
+      "nome": "Merge Sort",
+      "tamanho": 10000,
+      "algoritmo": "MERGE SORT",
+      "media": 1.549008,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [1.549008]
+    },
+    {
+      "nome": "Bubble Sort",
+      "tamanho": 20000,
+      "algoritmo": "BUBBLE SORT",
+      "media": 1271.114142,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [1271.114142]
+    },
+    {
+      "nome": "Insertion Sort",
+      "tamanho": 20000,
+      "algoritmo": "INSERTION SORT",
+      "media": 258.723060,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [258.723060]
+    },
+    {
+      "nome": "Selection Sort",
+      "tamanho": 20000,
+      "algoritmo": "SELECTION SORT",
+      "media": 469.910107,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [469.910107]
+    },
+    {
+      "nome": "Quick Sort",
+      "tamanho": 20000,
+      "algoritmo": "QUICK SORT",
+      "media": 2.690474,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [2.690474]
+    },
+    {
+      "nome": "Merge Sort",
+      "tamanho": 20000,
+      "algoritmo": "MERGE SORT",
+      "media": 3.264663,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [3.264663]
+    },
+    {
+      "nome": "Bubble Sort",
+      "tamanho": 30000,
+      "algoritmo": "BUBBLE SORT",
+      "media": 2728.986042,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [2728.986042]
+    },
+    {
+      "nome": "Insertion Sort",
+      "tamanho": 30000,
+      "algoritmo": "INSERTION SORT",
+      "media": 563.152102,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [563.152102]
+    },
+    {
+      "nome": "Selection Sort",
+      "tamanho": 30000,
+      "algoritmo": "SELECTION SORT",
+      "media": 1019.945747,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [1019.945747]
+    },
+    {
+      "nome": "Quick Sort",
+      "tamanho": 30000,
+      "algoritmo": "QUICK SORT",
+      "media": 4.279668,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [4.279668]
+    },
+    {
+      "nome": "Merge Sort",
+      "tamanho": 30000,
+      "algoritmo": "MERGE SORT",
+      "media": 5.063536,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [5.063536]
+    },
+    {
+      "nome": "Bubble Sort",
+      "tamanho": 40000,
+      "algoritmo": "BUBBLE SORT",
+      "media": 4883.362739,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [4883.362739]
+    },
+    {
+      "nome": "Insertion Sort",
+      "tamanho": 40000,
+      "algoritmo": "INSERTION SORT",
+      "media": 1015.758516,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [1015.758516]
+    },
+    {
+      "nome": "Selection Sort",
+      "tamanho": 40000,
+      "algoritmo": "SELECTION SORT",
+      "media": 1808.960342,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [1808.960342]
+    },
+    {
+      "nome": "Quick Sort",
+      "tamanho": 40000,
+      "algoritmo": "QUICK SORT",
+      "media": 5.733560,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [5.733560]
+    },
+    {
+      "nome": "Merge Sort",
+      "tamanho": 40000,
+      "algoritmo": "MERGE SORT",
+      "media": 6.832453,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [6.832453]
+    },
+    {
+      "nome": "Bubble Sort",
+      "tamanho": 50000,
+      "algoritmo": "BUBBLE SORT",
+      "media": 7567.509550,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [7567.509550]
+    },
+    {
+      "nome": "Insertion Sort",
+      "tamanho": 50000,
+      "algoritmo": "INSERTION SORT",
+      "media": 1591.552055,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [1591.552055]
+    },
+    {
+      "nome": "Selection Sort",
+      "tamanho": 50000,
+      "algoritmo": "SELECTION SORT",
+      "media": 2827.191006,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [2827.191006]
+    },
+    {
+      "nome": "Quick Sort",
+      "tamanho": 50000,
+      "algoritmo": "QUICK SORT",
+      "media": 7.542903,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [7.542903]
+    },
+    {
+      "nome": "Merge Sort",
+      "tamanho": 50000,
+      "algoritmo": "MERGE SORT",
+      "media": 8.738493,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [8.738493]
+    },
+    {
+      "nome": "Bubble Sort",
+      "tamanho": 60000,
+      "algoritmo": "BUBBLE SORT",
+      "media": 10920.244737,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [10920.244737]
+    },
+    {
+      "nome": "Insertion Sort",
+      "tamanho": 60000,
+      "algoritmo": "INSERTION SORT",
+      "media": 2247.717893,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [2247.717893]
+    },
+    {
+      "nome": "Selection Sort",
+      "tamanho": 60000,
+      "algoritmo": "SELECTION SORT",
+      "media": 4070.520164,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [4070.520164]
+    },
+    {
+      "nome": "Quick Sort",
+      "tamanho": 60000,
+      "algoritmo": "QUICK SORT",
+      "media": 8.697922,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [8.697922]
+    },
+    {
+      "nome": "Merge Sort",
+      "tamanho": 60000,
+      "algoritmo": "MERGE SORT",
+      "media": 10.769458,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [10.769458]
+    },
+    {
+      "nome": "Bubble Sort",
+      "tamanho": 70000,
+      "algoritmo": "BUBBLE SORT",
+      "media": 15193.653370,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [15193.653370]
+    },
+    {
+      "nome": "Insertion Sort",
+      "tamanho": 70000,
+      "algoritmo": "INSERTION SORT",
+      "media": 3060.261186,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [3060.261186]
+    },
+    {
+      "nome": "Selection Sort",
+      "tamanho": 70000,
+      "algoritmo": "SELECTION SORT",
+      "media": 5524.581896,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [5524.581896]
+    },
+    {
+      "nome": "Quick Sort",
+      "tamanho": 70000,
+      "algoritmo": "QUICK SORT",
+      "media": 10.295069,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [10.295069]
+    },
+    {
+      "nome": "Merge Sort",
+      "tamanho": 70000,
+      "algoritmo": "MERGE SORT",
+      "media": 12.679500,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [12.679500]
+    },
+    {
+      "nome": "Bubble Sort",
+      "tamanho": 80000,
+      "algoritmo": "BUBBLE SORT",
+      "media": 19423.847198,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [19423.847198]
+    },
+    {
+      "nome": "Insertion Sort",
+      "tamanho": 80000,
+      "algoritmo": "INSERTION SORT",
+      "media": 3991.803869,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [3991.803869]
+    },
+    {
+      "nome": "Selection Sort",
+      "tamanho": 80000,
+      "algoritmo": "SELECTION SORT",
+      "media": 7214.806956,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [7214.806956]
+    },
+    {
+      "nome": "Quick Sort",
+      "tamanho": 80000,
+      "algoritmo": "QUICK SORT",
+      "media": 12.079454,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [12.079454]
+    },
+    {
+      "nome": "Merge Sort",
+      "tamanho": 80000,
+      "algoritmo": "MERGE SORT",
+      "media": 14.498281,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [14.498281]
+    },
+    {
+      "nome": "Bubble Sort",
+      "tamanho": 90000,
+      "algoritmo": "BUBBLE SORT",
+      "media": 24507.233353,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [24507.233353]
+    },
+    {
+      "nome": "Insertion Sort",
+      "tamanho": 90000,
+      "algoritmo": "INSERTION SORT",
+      "media": 5059.445867,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [5059.445867]
+    },
+    {
+      "nome": "Selection Sort",
+      "tamanho": 90000,
+      "algoritmo": "SELECTION SORT",
+      "media": 9140.868830,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [9140.868830]
+    },
+    {
+      "nome": "Quick Sort",
+      "tamanho": 90000,
+      "algoritmo": "QUICK SORT",
+      "media": 13.529204,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [13.529204]
+    },
+    {
+      "nome": "Merge Sort",
+      "tamanho": 90000,
+      "algoritmo": "MERGE SORT",
+      "media": 16.387054,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [16.387054]
+    },
+    {
+      "nome": "Bubble Sort",
+      "tamanho": 100000,
+      "algoritmo": "BUBBLE SORT",
+      "media": 30543.093477,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [30543.093477]
+    },
+    {
+      "nome": "Insertion Sort",
+      "tamanho": 100000,
+      "algoritmo": "INSERTION SORT",
+      "media": 6237.583978,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [6237.583978]
+    },
+    {
+      "nome": "Selection Sort",
+      "tamanho": 100000,
+      "algoritmo": "SELECTION SORT",
+      "media": 11294.018488,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [11294.018488]
+    },
+    {
+      "nome": "Quick Sort",
+      "tamanho": 100000,
+      "algoritmo": "QUICK SORT",
+      "media": 15.621143,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [15.621143]
+    },
+    {
+      "nome": "Merge Sort",
+      "tamanho": 100000,
+      "algoritmo": "MERGE SORT",
+      "media": 18.469441,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [18.469441]
+    }
+  ],
+  "timestamp": "2026-04-19"
+}

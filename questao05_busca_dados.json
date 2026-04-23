@@ -1,0 +1,276 @@
+{
+  "questao": "questao05_busca",
+  "algoritmos": [
+    {
+      "nome": "Busca Sequencial (Vetor)",
+      "tamanho": 100000,
+      "algoritmo": "SEQ_VET",
+      "media": 0.236305,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [0.236305]
+    },
+    {
+      "nome": "Busca Binária (Vetor)",
+      "tamanho": 100000,
+      "algoritmo": "BIN_VET",
+      "media": 0.000431,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [0.000431]
+    },
+    {
+      "nome": "Busca Sequencial (Lista)",
+      "tamanho": 100000,
+      "algoritmo": "SEQ_LST",
+      "media": 0.319706,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [0.319706]
+    },
+    {
+      "nome": "Busca Sequencial (Vetor)",
+      "tamanho": 200000,
+      "algoritmo": "SEQ_VET",
+      "media": 0.472485,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [0.472485]
+    },
+    {
+      "nome": "Busca Binária (Vetor)",
+      "tamanho": 200000,
+      "algoritmo": "BIN_VET",
+      "media": 0.000328,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [0.000328]
+    },
+    {
+      "nome": "Busca Sequencial (Lista)",
+      "tamanho": 200000,
+      "algoritmo": "SEQ_LST",
+      "media": 0.698066,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [0.698066]
+    },
+    {
+      "nome": "Busca Sequencial (Vetor)",
+      "tamanho": 300000,
+      "algoritmo": "SEQ_VET",
+      "media": 0.700483,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [0.700483]
+    },
+    {
+      "nome": "Busca Binária (Vetor)",
+      "tamanho": 300000,
+      "algoritmo": "BIN_VET",
+      "media": 0.000608,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [0.000608]
+    },
+    {
+      "nome": "Busca Sequencial (Lista)",
+      "tamanho": 300000,
+      "algoritmo": "SEQ_LST",
+      "media": 1.102470,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [1.102470]
+    },
+    {
+      "nome": "Busca Sequencial (Vetor)",
+      "tamanho": 400000,
+      "algoritmo": "SEQ_VET",
+      "media": 0.941810,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [0.941810]
+    },
+    {
+      "nome": "Busca Binária (Vetor)",
+      "tamanho": 400000,
+      "algoritmo": "BIN_VET",
+      "media": 0.000472,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [0.000472]
+    },
+    {
+      "nome": "Busca Sequencial (Lista)",
+      "tamanho": 400000,
+      "algoritmo": "SEQ_LST",
+      "media": 1.479253,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [1.479253]
+    },
+    {
+      "nome": "Busca Sequencial (Vetor)",
+      "tamanho": 500000,
+      "algoritmo": "SEQ_VET",
+      "media": 1.180169,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [1.180169]
+    },
+    {
+      "nome": "Busca Binária (Vetor)",
+      "tamanho": 500000,
+      "algoritmo": "BIN_VET",
+      "media": 0.000548,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [0.000548]
+    },
+    {
+      "nome": "Busca Sequencial (Lista)",
+      "tamanho": 500000,
+      "algoritmo": "SEQ_LST",
+      "media": 1.874418,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [1.874418]
+    },
+    {
+      "nome": "Busca Sequencial (Vetor)",
+      "tamanho": 600000,
+      "algoritmo": "SEQ_VET",
+      "media": 1.420304,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [1.420304]
+    },
+    {
+      "nome": "Busca Binária (Vetor)",
+      "tamanho": 600000,
+      "algoritmo": "BIN_VET",
+      "media": 0.000668,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [0.000668]
+    },
+    {
+      "nome": "Busca Sequencial (Lista)",
+      "tamanho": 600000,
+      "algoritmo": "SEQ_LST",
+      "media": 2.340624,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [2.340624]
+    },
+    {
+      "nome": "Busca Sequencial (Vetor)",
+      "tamanho": 700000,
+      "algoritmo": "SEQ_VET",
+      "media": 1.644246,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [1.644246]
+    },
+    {
+      "nome": "Busca Binária (Vetor)",
+      "tamanho": 700000,
+      "algoritmo": "BIN_VET",
+      "media": 0.000590,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [0.000590]
+    },
+    {
+      "nome": "Busca Sequencial (Lista)",
+      "tamanho": 700000,
+      "algoritmo": "SEQ_LST",
+      "media": 2.613887,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [2.613887]
+    },
+    {
+      "nome": "Busca Sequencial (Vetor)",
+      "tamanho": 800000,
+      "algoritmo": "SEQ_VET",
+      "media": 1.887465,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [1.887465]
+    },
+    {
+      "nome": "Busca Binária (Vetor)",
+      "tamanho": 800000,
+      "algoritmo": "BIN_VET",
+      "media": 0.000475,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [0.000475]
+    },
+    {
+      "nome": "Busca Sequencial (Lista)",
+      "tamanho": 800000,
+      "algoritmo": "SEQ_LST",
+      "media": 3.010585,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [3.010585]
+    },
+    {
+      "nome": "Busca Sequencial (Vetor)",
+      "tamanho": 900000,
+      "algoritmo": "SEQ_VET",
+      "media": 2.128393,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [2.128393]
+    },
+    {
+      "nome": "Busca Binária (Vetor)",
+      "tamanho": 900000,
+      "algoritmo": "BIN_VET",
+      "media": 0.000470,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [0.000470]
+    },
+    {
+      "nome": "Busca Sequencial (Lista)",
+      "tamanho": 900000,
+      "algoritmo": "SEQ_LST",
+      "media": 3.426677,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [3.426677]
+    },
+    {
+      "nome": "Busca Sequencial (Vetor)",
+      "tamanho": 1000000,
+      "algoritmo": "SEQ_VET",
+      "media": 2.430196,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [2.430196]
+    },
+    {
+      "nome": "Busca Binária (Vetor)",
+      "tamanho": 1000000,
+      "algoritmo": "BIN_VET",
+      "media": 0.000577,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [0.000577]
+    },
+    {
+      "nome": "Busca Sequencial (Lista)",
+      "tamanho": 1000000,
+      "algoritmo": "SEQ_LST",
+      "media": 4.063798,
+      "desvio_padrao": 0.000000,
+      "numero_execucoes": 1,
+      "tempos_execucao": [4.063798]
+    }
+  ],
+  "timestamp": "2026-04-19"
+}
